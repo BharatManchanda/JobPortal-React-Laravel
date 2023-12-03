@@ -80,8 +80,8 @@ function DrawerAppBar(props) {
                         })}
                     </Box>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        <ThemeButton  sx={{m:"10px"}} variant='outlined' to="/login" component={Link} color='secondary'>Login</ThemeButton>
-                        <ThemeButton sx={{m:"10px"}} variant='contained' color='secondary'>Register</ThemeButton>
+                        <ThemeButton sx={{m:"10px"}} variant='outlined' to="/login" component={Link} color='secondary'>Login</ThemeButton>
+                        <ThemeButton sx={{m:"10px"}} variant='contained' to="/register" component={Link} color='secondary'>Register</ThemeButton>
                     </Box>
                 </Toolbar>
             </AppBar>

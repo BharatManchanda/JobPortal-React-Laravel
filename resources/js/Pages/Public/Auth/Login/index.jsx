@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Checkbox, FormControlLabel, FormGroup, Grid, Paper, TextField, Typography, Button } from '@mui/material';
 import ThemeButton from '../../../../Components/Common/ThemeButton';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ThemeColor } from '../../../../Helpers/StyleConstant';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -15,7 +15,7 @@ function Login() {
                     <Paper sx={{padding:'25px', borderRadius:'25px'}}>
                         <Typography fontWeight={`bolder`} variant='h5'>Login</Typography>
                         <Typography fontWeight={`bolder`}>Doesn't have an account yet?
-                            <a href="">Sign up</a>
+                            <Link to="/register">Sign up</Link>
                         </Typography>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Email Address</Typography>
