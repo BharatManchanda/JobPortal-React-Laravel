@@ -6,7 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import Constants from './Constant/Constant';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import './style.scss'
 import ThemeButton from '../../Common/ThemeButton';
 
 export default function Footer() {
@@ -27,8 +26,13 @@ export default function Footer() {
 
     return (
         <React.Fragment>
-            <Box sx={{background: ThemeColor.primary, color:'white', borderTopLeftRadius:'100px'}} >
-                <Grid container marginTop={3}>
+            <Box sx={{
+                background: ThemeColor.primary,
+                color:'white',
+                borderTopLeftRadius:'100px',
+                marginTop:'-45px'
+                }}>
+                <Grid container>
                     <Grid item md={.5}>
                     </Grid>
                     <Grid item md={4} lg={2.5} p={3}>
@@ -65,7 +69,7 @@ export default function Footer() {
                             />
                         </Box>
                         <Box mt={2}>
-                            <ThemeButton variant="contained" color="secondary">Subscribe</ThemeButton>
+                            <ThemeButton variant="contained" color="secondary" >Subscribe</ThemeButton>
                         </Box>
                     </Grid>
                 </Grid>

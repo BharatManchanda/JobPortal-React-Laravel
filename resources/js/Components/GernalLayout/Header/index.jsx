@@ -7,6 +7,7 @@ import { ThemeColor } from '../../../Helpers/StyleConstant';
 import { Links } from './Constant/Constant';
 import { NavLink } from 'react-router-dom';
 import "./style.scss"
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -79,7 +80,7 @@ function DrawerAppBar(props) {
                         })}
                     </Box>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        <ThemeButton  sx={{m:"10px"}} variant='outlined' color='secondary'>Login</ThemeButton>
+                        <ThemeButton  sx={{m:"10px"}} variant='outlined' to="/login" component={Link} color='secondary'>Login</ThemeButton>
                         <ThemeButton sx={{m:"10px"}} variant='contained' color='secondary'>Register</ThemeButton>
                     </Box>
                 </Toolbar>

@@ -1,0 +1,26 @@
+@import '../js/assets/scss/Gernal/variable.scss';
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root{
+    color: $secondary !important
+}
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+    color: $secondary !important;
+}
+.css-v4u5dn-MuiInputBase-root-MuiInput-root:after{
+    border-bottom: 2px solid $secondary !important;
+}
+
+.css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before{
+    border-bottom: 2px solid $white !important
+}
+.css-v4u5dn-MuiInputBase-root-MuiInput-root:before{
+    border-bottom: 1px solid $secondary !important
+}
+.css-1pysi21-MuiFormLabel-root-MuiInputLabel-root{
+    color: $primary !important
+}
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+    color: $secondary !important
+}
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: gold !important;
+}
