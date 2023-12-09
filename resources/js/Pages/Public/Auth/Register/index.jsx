@@ -1,12 +1,32 @@
 import React from 'react';
-import { Divider, Checkbox, FormControlLabel, FormGroup, Grid, Paper, TextField, Typography, Button } from '@mui/material';
+import { Divider, Grid, Paper, TextField, Typography, Button } from '@mui/material';
 import ThemeButton from '../../../../Components/Common/ThemeButton';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import RegisterImage from '../../../../assets/SVG/Register';
 import { Link } from 'react-router-dom';
+import Constant from './Constant';
+import _ from 'lodash';
+import { useDispatch } from 'react-redux';
+import { registerRequest } from '../../../../Store/Auth/Register/actions';
 
 function Register() {
+
+    const [data, setData] = React.useState(_.cloneDeep(Constant.register));
+    const dispatch = useDispatch();
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setData({
+            ...data,
+            [name]:value,
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(registerRequest(data));
+    }
+
     return (
         <>
             <Grid container mt={3}>
@@ -21,44 +41,74 @@ function Register() {
                         </Typography>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Name</Typography>
-                            <TextField type='text' size='small'  label="Full Name" fullWidth ></TextField>
+                            <TextField
+                                error={false?true:false}
+                                type='text'
+                                size='small'
+                                label="Full Name"
+                                name='name'
+                                onChange={handleChange} fullWidth required 
+                                helperText=""
+                            />
                         </Grid>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Phone</Typography>
-                            <TextField type='number' size='small'  label="Phone" fullWidth ></TextField>
+                            <TextField
+                                error={false?true:false}
+                                type='number'
+                                size='small'
+                                label="Phone"
+                                name='phone'
+                                onChange={handleChange} fullWidth required
+                                helperText=""
+                            />
                         </Grid>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Email Address</Typography>
-                            <TextField type='email' size='small'  label="Enter Address" fullWidth ></TextField>
+                            <TextField
+                                error={false?true:false}
+                                type='email'
+                                size='small'
+                                label="Enter Address"
+                                name='email'
+                                onChange={handleChange} fullWidth required
+                                helperText=""
+                                />
                         </Grid>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Password</Typography>
-                            <TextField type='password' size='small'  label="Password" fullWidth ></TextField>
+                            <TextField
+                                error={false?true:false}
+                                type='password'
+                                size='small'
+                                label="Password"
+                                name='password'
+                                onChange={handleChange} fullWidth required
+                                helperText=""
+                            />
                         </Grid>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Confirm Password</Typography>
-                            <TextField type='password' size='small'  label="Confirm Password" fullWidth ></TextField>
+                            <TextField
+                                error={false?true:false}
+                                type='password'
+                                size='small'
+                                label="Confirm Password"
+                                name='confirm_password'
+                                onChange={handleChange} fullWidth required
+                                helperText=""
+                            />
                         </Grid>
                         <Grid my={2}>
-                            <ThemeButton variant={'contained'} color='secondary' fullWidth={true}>Register</ThemeButton>
+                            <ThemeButton variant={'contained'} color='secondary' fullWidth onClick={handleSubmit}>Register</ThemeButton>
                         </Grid>
                         <Divider sx={{fontSize:'20px'}}>or register with</Divider>
                         <Grid display={'flex'}  justifyContent={'space-between'} gap={2} m={2}>
-                            <Button variant='outlined' color='error' fullWidth
-                            startIcon={
-                            <GoogleIcon color='error' />
-                            }>
-                                Google
-                            </Button>
-                            <Button variant='outlined' color='primary' fullWidth startIcon={
-                                <FacebookIcon/>
-                            }>Facebook</Button>
+                            <Button variant='outlined' color='error' fullWidth startIcon={ <GoogleIcon color='error' />}>Google</Button>
+                            <Button variant='outlined' color='primary' fullWidth startIcon={<FacebookIcon/>}>Facebook</Button>
                         </Grid>
                     </Paper>
                 </Grid>
-                {/* <Grid item lg={7} display={'flex'} justifyContent={'center'} >
-                    <RegisterImage />
-                </Grid> */}
             </Grid>
         </>
     );

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import { Typography } from '@mui/material';
-
+import Loader from '../../../Components/Common/Loader';
 export default function Home(){
     return(
         <Fragment>

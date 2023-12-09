@@ -1,55 +1,24 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import {AppBar, Box, Toolbar, Typography, Button} from '@mui/material';
+import {AppBar, Box, Toolbar, Typography, Button, IconButton, Badge} from '@mui/material';
 import ThemeButton from '../../Common/ThemeButton';
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import { Links } from './Constant/Constant';
 import { NavLink } from 'react-router-dom';
 import "./style.scss"
 import { Link } from 'react-router-dom';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-  
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        width: '12ch',
-        '&:focus': {
-          width: '20ch',
-        },
-      },
-    },
-}));
+function notificationsLabel(count) {
+    if (count === 0) {
+      return 'no notifications';
+    }
+    if (count > 99) {
+      return 'more than 99 notifications';
+    }
+    return `${count} notifications`;
+  }
 
 function DrawerAppBar(props) {
     
@@ -80,6 +49,11 @@ function DrawerAppBar(props) {
                         })}
                     </Box>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        <IconButton  sx={{marginRight:'10px'}} aria-label={notificationsLabel(10)}>
+                            <Badge badgeContent={10} color='error'>
+                                <NotificationsActiveIcon sx={{color:ThemeColor.secondary}} />
+                            </Badge>
+                        </IconButton>
                         <ThemeButton sx={{m:"10px"}} variant='outlined' to="/login" component={Link} color='secondary'>Login</ThemeButton>
                         <ThemeButton sx={{m:"10px"}} variant='contained' to="/register" component={Link} color='secondary'>Register</ThemeButton>
                     </Box>
