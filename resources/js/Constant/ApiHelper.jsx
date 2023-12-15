@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const api = axios.create();
+let API_URL = import.meta.env.VITE_BASE_URL;
+const api = axios.create({
+    baseURL: API_URL
+});
 
 export const get = async (url, config={}) => {
     return await api

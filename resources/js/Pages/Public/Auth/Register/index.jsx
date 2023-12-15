@@ -7,12 +7,15 @@ import RegisterImage from '../../../../assets/SVG/Register';
 import { Link } from 'react-router-dom';
 import Constant from './Constant';
 import _ from 'lodash';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerRequest } from '../../../../Store/Auth/Register/actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
 
     const [data, setData] = React.useState(_.cloneDeep(Constant.register));
+    const register = useSelector(store => store.register);
     const dispatch = useDispatch();
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -26,10 +29,10 @@ function Register() {
         e.preventDefault();
         dispatch(registerRequest(data));
     }
-
     return (
         <>
             <Grid container mt={3}>
+                <ToastContainer />
                 <Grid item lg={7} display={'flex'} flexDirection={'column'} justifyContent={'center'} >
                     <RegisterImage />
                 </Grid>
@@ -47,6 +50,7 @@ function Register() {
                                 size='small'
                                 label="Full Name"
                                 name='name'
+                                value={data.name}
                                 onChange={handleChange} fullWidth required 
                                 helperText=""
                             />
@@ -59,6 +63,7 @@ function Register() {
                                 size='small'
                                 label="Phone"
                                 name='phone'
+                                value={data.phone}
                                 onChange={handleChange} fullWidth required
                                 helperText=""
                             />
@@ -71,9 +76,10 @@ function Register() {
                                 size='small'
                                 label="Enter Address"
                                 name='email'
+                                value={data.email}
                                 onChange={handleChange} fullWidth required
                                 helperText=""
-                                />
+                            />
                         </Grid>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Password</Typography>
@@ -83,6 +89,7 @@ function Register() {
                                 size='small'
                                 label="Password"
                                 name='password'
+                                value={data.password}
                                 onChange={handleChange} fullWidth required
                                 helperText=""
                             />
@@ -95,6 +102,7 @@ function Register() {
                                 size='small'
                                 label="Confirm Password"
                                 name='confirm_password'
+                                value={data.confirm_password}
                                 onChange={handleChange} fullWidth required
                                 helperText=""
                             />

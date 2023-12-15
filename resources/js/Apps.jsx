@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import {PublicRoute} from './Route';
+import {PublicRoute, AuthenticateRoute} from './Route';
 import GernalLayout from './Components/GernalLayout';
+import AuthenticatedLayout from './Components/AdminLayout';
 
 export default function Apps() {
     return (
@@ -15,8 +16,18 @@ export default function Apps() {
                                 {value.component}
                             </GernalLayout>
                             }
-                        >
-                    </Route>
+                    />
+                ))}
+
+                {AuthenticateRoute.map((value, index) => (
+                    <Route key={index}
+                        path={value.path}
+                        element={
+                            <AuthenticatedLayout>
+                                
+                            </AuthenticatedLayout>
+                        }
+                    />
                 ))}
             </Routes>
         </React.Fragment>

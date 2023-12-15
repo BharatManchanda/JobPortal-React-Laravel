@@ -1,10 +1,10 @@
 const register = {
     id:null,
-    name:'',
-    phone:null,
-    email:'',
-    password:'',
-    confirm_password:'',
+    name: 'Bharat',
+    phone: '1234567890',
+    email: 'bharat@yopmail.com',
+    password: '1234567890',
+    confirm_password: '1234567890',
 };
 
 const Constant = {
