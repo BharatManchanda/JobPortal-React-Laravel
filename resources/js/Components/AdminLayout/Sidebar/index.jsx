@@ -14,20 +14,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Grid} from '@mui/material';
+import { Badge, Box, Grid, Menu, MenuItem, Toolbar} from '@mui/material';
 import Menus from './Constant/constant';
 import { NavLink } from 'react-router-dom';
 import './style.scss'
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-<<<<<<< HEAD
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-=======
->>>>>>> e9e0eb3aa047a965dadcd08c40408d5ee0396ade
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -99,7 +97,12 @@ export default function Sidebar() {
     const [open, setOpen] = React.useState(true);
     const [subMenu, setSubMenu] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const drawerWidth = 240;
 
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -122,7 +125,6 @@ export default function Sidebar() {
 
     return (
         <>
-<<<<<<< HEAD
             <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton color="inherit"
@@ -193,8 +195,6 @@ export default function Sidebar() {
                     </Box>
                 </Toolbar>
             </AppBar>
-=======
->>>>>>> e9e0eb3aa047a965dadcd08c40408d5ee0396ade
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <Grid container display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
