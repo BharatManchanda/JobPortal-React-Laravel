@@ -5,18 +5,38 @@ use App\Interface\UserInterface;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
     class UserRepository implements UserInterface{
 
         public function getList($role=null) {
+            try {
+                $query = User::query();
+                if ($role != null){
+                    $query = $query->where('role', $role);
+                }
 
+                $list = $query->get();
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User List fetched successfully',
+                    'list' => $list
+                ]);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'status' => true,
+                    'message' => $th->getMessage(),
+                ]);
+            }
         }
 
-        public function saveUser(Request $request) {
+        public function save(Request $request) {
             try {
-                dd(12);
                 $userDetail = $request->only(['name', 'email', 'password']);
                 $authUser = Auth::user();
+                $userDetail['password'] = Hash::make($request->password);
+
                 if ($authUser && $authUser->role == 'admin') {
                     $userDetail['role'] = $request->role;
                 }

@@ -1,7 +1,8 @@
 import Home from "../Pages/Public/Home"
 import Login from "../Pages/Public/Auth/Login"
 import Register from "../Pages/Public/Auth/Register"
-import AuthenticatedLayout from "../Components/AdminLayout";
+import List from "../Pages/Admin/User/List";
+import Dashboard from "../Pages/Admin/Dashboard";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
@@ -9,8 +10,9 @@ const PublicRoute = [
     { path:'/register', component: <Register /> },
 ];
 
-const AuthenticateRoute = [
-    { path:'/authenticated', component: <AuthenticatedLayout /> },
+const AdminRoute = [
+    { path:'/admin/dashboard', component: <Dashboard /> },
+    { path:'/admin/user', component: <List /> },
 ];
 
-export {PublicRoute, AuthenticateRoute};
+export {PublicRoute, AdminRoute};

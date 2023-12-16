@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/{hash_link}/forget-password',function(){
+    dd("ok");
+});
+
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');

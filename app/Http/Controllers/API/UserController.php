@@ -17,13 +17,11 @@ class UserController extends Controller {
     }
 
     public function create(UserRequest $request) {
-        // try {
-            return $this->userRepository->saveUser($request);
-        // } catch (\Exception $e){
-        //     return response()->json([
-        //         'status' => false,
-        //         'message' => $e->getMessage(),
-        //     ])->setStatusCode(422);
-        // }
+        return $this->userRepository->save($request);
     }
+
+    public function list() {
+        return $this->userRepository->getList();
+    }
+
 }

@@ -36,7 +36,6 @@ export default function Home(){
                 consequuntur dignissimos numquam at nisi porro a, quaerat rem repellendus.
                 Voluptates perspiciatis, in pariatur impedit, nam facilis libero dolorem
                 dolores sunt inventore perferendis, aut sapiente modi nesciunt.
-
             </Typography>
         </Fragment>
     );

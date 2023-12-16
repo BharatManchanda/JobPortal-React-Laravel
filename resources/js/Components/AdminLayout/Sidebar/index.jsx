@@ -24,12 +24,10 @@ import './style.scss'
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-// AppBar
 import AccountCircle from '@mui/icons-material/AccountCircle';
-// import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const drawerWidth = 240;
 
@@ -101,7 +99,6 @@ export default function Sidebar() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [subMenu, setSubMenu] = React.useState(false);
-    const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClose = () => {
@@ -129,7 +126,7 @@ export default function Sidebar() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }} >
+        <>
             <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton color="inherit"
@@ -154,38 +151,34 @@ export default function Sidebar() {
                             <Badge sx={{mr:1}} badgeContent={17} color="error">
                                 <MailIcon />
                             </Badge>
-                            {auth && (
-                                <React.Fragment>
-                                    <IconButton
-                                        size="large"
-                                        aria-label="account of current user"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        onClick={handleMenu}
-                                        color="inherit"
-                                    >
-                                        <AccountCircle />
-                                    </IconButton>
-                                    <Menu
-                                        id="menu-appbar"
-                                        anchorEl={anchorEl}
-                                        anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        keepMounted
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleClose}
-                                    >
-                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                                    </Menu>
-                                </React.Fragment>
-                            )}
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                            </Menu>
                         </Grid>
                     </Grid>
 
@@ -237,7 +230,9 @@ export default function Sidebar() {
                                         justifyContent: 'center',
                                     }}
                                     >
-                                        {index % 2 === 0 ? <InboxIcon sx={{ color: ThemeColor.secondary }} /> : <MailIcon sx={{ color: ThemeColor.secondary }} />}
+                                        {menu.icon}
+                                        {/* <DashboardIcon sx={{ color: ThemeColor.secondary }} /> */}
+                                        {/* {index % 2 === 0 ? <InboxIcon sx={{ color: ThemeColor.secondary }} /> : <MailIcon sx={{ color: ThemeColor.secondary }} />} */}
                                     </ListItemIcon>
                                     <ListItemText onClick={() => {
                                         handleChangeSubMenuToggle(index);
@@ -269,25 +264,7 @@ export default function Sidebar() {
                         </React.Fragment>
                     ))}
                 </List>
-                <Divider />
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-            </Box>
-        </Box>
+        </>
     );
 }

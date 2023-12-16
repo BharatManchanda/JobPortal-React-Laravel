@@ -4,7 +4,7 @@
 
     Interface UserInterface {
         public function getList($role=null);
-        public function saveUser(Request $userDetails);
         public function getDetails($id);
+        public function save(Request $userDetails);
     } 
 ?>
