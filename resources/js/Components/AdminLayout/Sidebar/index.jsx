@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
@@ -17,20 +14,22 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Badge, Grid, Menu, MenuItem } from '@mui/material';
+import { Grid} from '@mui/material';
 import Menus from './Constant/constant';
 import { NavLink } from 'react-router-dom';
 import './style.scss'
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+<<<<<<< HEAD
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+=======
+>>>>>>> e9e0eb3aa047a965dadcd08c40408d5ee0396ade
 
 const drawerWidth = 240;
-
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -120,13 +119,10 @@ export default function Sidebar() {
     const handleChangeSubMenuToggle = (index) => {
         setSubMenu(subMenu == index ? false : index);
     }
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
 
     return (
         <>
+<<<<<<< HEAD
             <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton color="inherit"
@@ -197,6 +193,8 @@ export default function Sidebar() {
                     </Box>
                 </Toolbar>
             </AppBar>
+=======
+>>>>>>> e9e0eb3aa047a965dadcd08c40408d5ee0396ade
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <Grid container display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
