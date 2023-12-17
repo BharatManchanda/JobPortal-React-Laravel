@@ -17,8 +17,8 @@ function* registerUser(action) {
     }
 }
 
-function* registerSaga(){
+function* register(){
     yield takeLatest(REGISTER_REQUEST, registerUser);
 }
 
-export default registerSaga;
+export default register;

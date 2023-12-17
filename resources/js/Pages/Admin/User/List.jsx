@@ -10,6 +10,9 @@ import { Chip } from '@mui/material';
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
+import { getUsersRequest } from '../../../Store/User/actions';
+import { useDispatch } from 'react-redux';
+
 const rows = [
     {
         id: 1,
@@ -49,9 +52,13 @@ const rows = [
 ];
 
 export default function List() {
+    const dispatch = useDispatch();
     const sortTable = (sort) => {
         console.log(sort);
     }
+    React.useEffect(() => {
+        dispatch(getUsersRequest({qwe:12}));
+    },[])
     return (
         <TableContainer component={Paper}>
             {!!rows.length ?

@@ -3,32 +3,32 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_REQUEST, LOGOUT_SUCCESS
 export const loginUserRequest = (payload) => {
     console.log(payload,'payload');
     return {
-        action: LOGIN_REQUEST,
+        type: LOGIN_REQUEST,
         payload: payload,
     }
 }
 
 export const loginUserSuccess = (payload) => ({
-    action: LOGIN_SUCCESS,
+    type: LOGIN_SUCCESS,
     payload: payload,
 });
 
 export const loginUserFail = (payload) => ({
-    action: LOGIN_FAIL,
+    type: LOGIN_FAIL,
     payload: payload,
 });
 
 export const logoutUserRequest = (payload) => ({
-    action: LOGOUT_REQUEST,
+    type: LOGOUT_REQUEST,
     payload: payload,
 });
 
 export const logoutUserSuccess = (payload) => ({
-    action: LOGOUT_SUCCESS,
+    type: LOGOUT_SUCCESS,
     payload: payload,
 });
 
 export const logoutUserFail = (payload) => ({
-    action: LOGOUT_FAIL,
+    type: LOGOUT_FAIL,
     payload: payload,
 });

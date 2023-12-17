@@ -7,6 +7,14 @@ const api = {
         signup: (data) => post('/register', data),
         forgetPassword: (data) => post('/forget-password', data),
     },
+
+    user:{
+        list: (data) => post('/user', data),
+        create: (data) => post('user/create', data),
+        update: (data) => post('user/update', data),
+        delete: (data) => post('user/delete', data),
+        resetPassword: (data) => post('user/reset-password', data),
+    }
 };
 
 export default api;

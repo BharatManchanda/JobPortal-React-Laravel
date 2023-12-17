@@ -20,9 +20,15 @@ export default function login(state = initState, action) {
                 loading: false
             }
         case LOGIN_SUCCESS:
-            break;
+            return{
+                ...state,
+                loading: false
+            }
         case LOGOUT_SUCCESS:
-            break;
+            return{
+                ...state,
+                loading: false
+            }
         default:
             return state;
     }

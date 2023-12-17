@@ -1,9 +1,12 @@
 import {fork, all} from 'redux-saga/effects';
-import authSaga from './Auth/Login/Saga';
-import registerSaga from './Auth/Register/Saga';
+import auth from './Auth/Login/Saga';
+import register from './Auth/Register/Saga';
+import user from './User/saga';
+
 export default function* sagas() {
     yield all([
-        fork(authSaga),
-        fork(registerSaga),
+        fork(auth),
+        fork(register),
+        fork(user),
     ]);
 }

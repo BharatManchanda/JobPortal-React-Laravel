@@ -12,7 +12,7 @@ class AuthController extends Controller
     //
     public function login(Request $request){
         try {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->firstOrFail();
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
                     $token = $user->createToken('aceess token')->accessToken;
@@ -28,7 +28,7 @@ class AuthController extends Controller
             return response()->json([
                 'status'=>false,
                 'message'=>$th->getMessage(),
-            ]);
+            ])->setStatusCode(422);
         }
     }
 

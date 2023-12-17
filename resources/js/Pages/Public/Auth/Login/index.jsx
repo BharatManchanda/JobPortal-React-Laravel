@@ -6,12 +6,35 @@ import { ThemeColor } from '../../../../Helpers/StyleConstant';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import LoginImage from '../../../../assets/SVG/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserRequest } from '../../../../Store/Auth/Login/actions';
+import { ToastContainer } from 'react-toastify';
+import Loader from '../../../../Components/Common/Loader';
 
 function Login() {
+    const [data, setData] = React.useState({
+        email:'',
+        password:'',
+    });
+    const dispatch = useDispatch();
+    const login = useSelector(state => state.login);
+
+    function handleChange(e){
+        const {name, value} = e.target;
+        setData({
+            ...data,
+            [name]:value
+        });
+    }
+    function handleSubmit(){
+        dispatch(loginUserRequest(data));
+    }
     return (
         <>
             <Grid container mt={3}>
                 <Grid item lg={5}>
+                    <ToastContainer />
+                    <Loader loading={login.loading} />
                     <Paper sx={{padding:'25px', borderRadius:'25px'}}>
                         <Typography fontWeight={`bolder`} variant='h5'>Login</Typography>
                         <Typography fontWeight={`bolder`}>Doesn't have an account yet?
@@ -19,7 +42,15 @@ function Login() {
                         </Typography>
                         <Grid mt={2} display={'flex'} flexDirection={'column'}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Email Address</Typography>
-                            <TextField type='email' size='small'  label="Enter Address" fullWidth ></TextField>
+                            <TextField
+                                type='email'
+                                name='email'
+                                size='small'
+                                label="Enter Address"
+                                fullWidth
+                                value={data.email}
+                                onChange={handleChange}
+                            />
                         </Grid>
                         <Grid display={'flex'} justifyContent={'space-between'} mt={2}>
                             <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}} >Password</Typography>
@@ -29,7 +60,15 @@ function Login() {
                             }} >Forgot Password?</NavLink>
                         </Grid>
                         <Grid>
-                            <TextField type='email' size='small'  label="Password" fullWidth></TextField>
+                            <TextField
+                                type='password'
+                                name='password'
+                                size='small'
+                                label="Password"
+                                fullWidth
+                                value={data.password}
+                                onChange={handleChange}
+                            />
                         </Grid>
                         <Grid my={1}>
                             <FormGroup>
@@ -37,7 +76,7 @@ function Login() {
                             </FormGroup>
                         </Grid>
                         <Grid my={1}>
-                            <ThemeButton variant={'contained'} color='secondary' fullWidth={true}>Login</ThemeButton>
+                            <ThemeButton variant={'contained'} onClick={handleSubmit} color='secondary' fullWidth={true}>Login</ThemeButton>
                         </Grid>
                         <Divider sx={{fontSize:'20px'}}>or login with</Divider>
                         <Grid display={'flex'}  justifyContent={'space-between'} gap={2} m={2}>
