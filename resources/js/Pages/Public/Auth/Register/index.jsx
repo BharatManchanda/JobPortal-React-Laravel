@@ -17,6 +17,7 @@ function Register() {
     const [data, setData] = React.useState(_.cloneDeep(Constant.register));
     const register = useSelector(store => store.register);
     const dispatch = useDispatch();
+    
     const handleChange = (event) => {
         const {name, value} = event.target;
         setData({
@@ -29,6 +30,19 @@ function Register() {
         e.preventDefault();
         dispatch(registerRequest(data));
     }
+
+    React.useEffect(() => {
+        let  token = localStorage.getItem('token');
+        let  user = JSON.parse(localStorage.getItem('user'));
+        if (token && user) {
+            if (user.role == 'admin' || user.role == 'recruiter'){
+                navigate(`/${user.role}/dashboard`);
+            } else {
+                navigate(`/`);
+            }
+        }
+    }, []);
+
     return (
         <>
             <Grid container mt={3}>
