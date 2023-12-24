@@ -19,6 +19,13 @@ import {
 
 const initState = {
     loading:false,
+    list:[],
+    pagination:{
+        current_page:0,
+        last_page:0,
+        per_page:0,
+        total:0,
+    }
 }
 export default function user(state = initState, action){
     switch (action.type) {
@@ -43,9 +50,17 @@ export default function user(state = initState, action){
             }
 
         case GET_USERS_SUCCESS:
+            let {data, current_page, last_page, per_page, total} = action.payload;
             return {
                 ...state,
                 loading:false,
+                list:data,
+                pagination:{
+                    current_page: current_page,
+                    last_page:last_page,
+                    per_page:per_page,
+                    total:total,
+                }
             }
         case CREATE_USERS_SUCCESS:
             return {

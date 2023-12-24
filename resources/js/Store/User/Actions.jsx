@@ -16,11 +16,10 @@ import {
     RESET_PASSWORD_USERS_FAIL,
 } from './actionTypes'
 
-export const getUsersRequest = (data) => {
-    console.log(data);
-    return {type: GET_USERS_REQUEST,
-    payload: data,}
-};
+export const getUsersRequest = (data) => ({
+    type: GET_USERS_REQUEST,
+    payload:data
+});
 
 export const getUsersSuccess = (data) => ({
     type: GET_USERS_SUCCESS,

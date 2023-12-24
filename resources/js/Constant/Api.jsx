@@ -9,7 +9,7 @@ const api = {
     },
 
     user:{
-        list: (data) => post('/user', data),
+        list: (data) => post(`/user?page=${data.page}`, data),
         create: (data) => post('user/create', data),
         update: (data) => post('user/update', data),
         delete: (data) => post('user/delete', data),

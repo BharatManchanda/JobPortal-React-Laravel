@@ -9,15 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
     class UserRepository implements UserInterface{
 
-        public function getList($role=null) {
+        public function getList(Request $request) {
             try {
                 $query = User::query();
-                if ($role != null){
-                    $query = $query->where('role', $role);
-                }
-
-                $list = $query->get();
-
+                $list = $request->rowsPerPage ? $query->paginate($request->rowsPerPage) : $query->get();
                 return response()->json([
                     'status' => true,
                     'message' => 'User List fetched successfully',

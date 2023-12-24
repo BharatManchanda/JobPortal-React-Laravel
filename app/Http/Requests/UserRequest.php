@@ -24,17 +24,17 @@ class UserRequest extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            "name" => "required | min:3 | max:50",
-            'phone' => 'required|string|digits:10',
+            "name" => "required|min:3|max:50",
+            "phone" => "required|string|digits:10",
             "email" => "required|email|unique:users,email",
         ];
         if($user && $user->role == 'admin') {
-            $rules["role"] = "required | in:admin, client, business";
+            $rules["role"] = "required|in:admin,client,business";
         }
 
         if($this->isMethod('post')){
-            $rules["password"] = "required | min:8";
-            $rules["confirm_password"] = "required | same:password";
+            $rules["password"] = "required|min:8";
+            $rules["confirm_password"] = "required|same:password";
         }
         return $rules;
     }

@@ -7,3 +7,9 @@ export const ThemeColor = {
     background: '#E6D5B8', // off - white
     white: '#FFFFFF'
 }
+
+export const RoleColor = {
+    admin: '#df05cc',
+    client: '#007cff',
+    recruiter: '#64cb32',
+};

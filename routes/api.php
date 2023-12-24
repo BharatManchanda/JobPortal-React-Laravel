@@ -30,6 +30,8 @@ Route::middleware('auth:api')->group(function () {
     #User API
     Route::prefix('user')->controller(UserController::class)->group(function () {
         Route::post('/','list');
+        Route::post('/create',[UserController::class, 'create']);
+        Route::put('/update',[UserController::class, 'update']);
     });
 
     Route::post('logout',[AuthController::class, 'logout']);

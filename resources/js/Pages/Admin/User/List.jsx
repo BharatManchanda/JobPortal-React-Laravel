@@ -6,91 +6,120 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Chip } from '@mui/material';
+import { Box, Button, Chip, Grid, IconButton, TablePagination, Typography } from '@mui/material';
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
 import { getUsersRequest } from '../../../Store/User/actions';
-import { useDispatch } from 'react-redux';
-
-const rows = [
-    {
-        id: 1,
-        name: 'John Doe',
-        email: 'johndoe@yopmail.com',
-        verify_at: '12 Dec, 2023',
-        role: 'admin'
-    },
-    {
-        id: 2,
-        name: 'Rohan Doe',
-        email: 'rohandoe@yopmail.com',
-        verify_at: '12 Dec, 2023',
-        role: 'client'
-    },
-    {
-        id: 3,
-        name: 'Rishul Doe',
-        email: 'rohandoe@yopmail.com',
-        verify_at: '12 Dec, 2023',
-        role: 'client'
-    },
-    {
-        id: 4,
-        name: 'Akeli Doe',
-        email: 'akelidoe@yopmail.com',
-        verify_at: '12 Dec, 2023',
-        role: 'client'
-    },
-    {
-        id: 4,
-        name: 'Sonali Doe',
-        email: 'sonalidoe@yopmail.com',
-        verify_at: '12 Dec, 2023',
-        role: 'client'
-    },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../../Components/Common/Loader';
+import { ToastContainer } from 'react-toastify';
+import ThemeButton from '../../../Components/Common/ThemeButton';
+import AddIcon from '@mui/icons-material/Add';
+import { RoleColor, ThemeColor } from '../../../Helpers/StyleConstant';
+import { Link } from 'react-router-dom';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 export default function List() {
+    const [controller, setController] = React.useState({
+        page: 1,
+        rowsPerPage: 10
+    });
     const dispatch = useDispatch();
     const sortTable = (sort) => {
         console.log(sort);
     }
+
     React.useEffect(() => {
-        dispatch(getUsersRequest({qwe:12}));
-    },[])
+        dispatch(getUsersRequest(controller));
+    },[controller])
+
+    function handlePageChange(event, newPage){
+        setController({
+            ...controller,
+            page: newPage
+        });
+    }
+
+    const handleChangeRowsPerPage = (event) => {
+        setController({
+            ...controller,
+            rowsPerPage: parseInt(event.target.value, 10),
+            page: 1
+        });
+    };
+
+    let user = useSelector(state => state.user);
     return (
-        <TableContainer component={Paper}>
-            {!!rows.length ?
-                <Table sx={{ minWidth: 650 }} size="medium" aria-label="user-list">
-                    <TableHead>
-                        <TableRow>
-                            {Constant.UserList.map((row, key) => (
-                                <React.Fragment key={key}>
-                                    <SortTh row={row}  sortTable={sortTable} />
-                                </React.Fragment>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name} >
-                                <TableCell component="td" scope="row">{row.id}</TableCell>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.email}</TableCell>
-                                <TableCell>{row.verify_at}</TableCell>
-                                <TableCell>
-                                    <Chip size='small' label={row.role} style={{
-                                        borderRadius: "7px"
-                                    }} />
-                                </TableCell>
-                                <TableCell>{row.action}</TableCell>
+        <>
+            <Box display='flex' justifyContent={'space-between'} sx={{marginBottom:'10px'}}>
+                <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>User List</Typography>
+                <Button component={Link} to="/admin/user/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
+            </Box>
+            <TableContainer component={Paper}>
+                <ToastContainer/>
+                <Loader loading={user.loading} />
+                {user.loading || (!!user.list.length ?
+                <>
+                    <Table size="medium" aria-label="user-list">
+                        <TableHead>
+                            <TableRow>
+                                {Constant.UserList.map((row, key) => (
+                                    <React.Fragment key={key}>
+                                        <SortTh row={row}  sortTable={sortTable} />
+                                    </React.Fragment>
+                                ))}
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>:
-                <NotFound />
-            }
-        </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {user.list.map((row) => (
+                                <TableRow key={row.name} >
+                                    <TableCell width={'10%'}>{row.id}</TableCell>
+                                    <TableCell width={'20%'}>{row.name}</TableCell>
+                                    <TableCell width={'25%'}>{row.email}</TableCell>
+                                    <TableCell width={'15%'}>{row.verify_at}</TableCell>
+                                    <TableCell width={'10%'}>
+                                        <Chip size='small' label={row.role} style={{
+                                            borderRadius: "7px",
+                                            textTransform: "capitalize",
+                                            background: RoleColor[row.role],
+                                            color: '#fff',
+                                        }} />
+                                    </TableCell>
+                                    <TableCell width={'20%'}>
+                                        <IconButton aria-label="edit" size="small" sx={{
+                                            color:ThemeColor.primary
+                                        }}>
+                                            <ModeEditOutlineOutlinedIcon />
+                                        </IconButton>
+                                        <IconButton aria-label="view" size="small" sx={{
+                                            color:ThemeColor.primary
+                                        }}>
+                                            <RemoveRedEyeOutlinedIcon/>
+                                        </IconButton>
+                                        <IconButton aria-label="delete" size="small" sx={{
+                                            color:ThemeColor.primary
+                                        }}>
+                                            <DeleteOutlinedIcon/>
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <TablePagination
+                        component="div"
+                        onPageChange={handlePageChange}
+                        page={controller.page}
+                        count={90}
+                        rowsPerPage={controller.rowsPerPage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </> : <NotFound />
+                )}
+            </TableContainer>
+        </>
     );
 }

@@ -1,42 +1,38 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import {
     GET_USERS_REQUEST,
-    GET_USERS_SUCCESS,
-    GET_USERS_FAIL,
     CREATE_USERS_REQUEST,
-    CREATE_USERS_SUCCESS,
-    CREATE_USERS_FAIL,
     EDIT_USERS_REQUEST,
-    EDIT_USERS_SUCCESS,
-    EDIT_USERS_FAIL,
     DELETE_USERS_REQUEST,
-    DELETE_USERS_SUCCESS,
-    DELETE_USERS_FAIL,
     RESET_PASSWORD_USERS_REQUEST,
-    RESET_PASSWORD_USERS_SUCCESS,
-    RESET_PASSWORD_USERS_FAIL,
 } from './actionTypes';
+import { getUsersSuccess, getUsersFail  } from "./actions";
 import api from "../../Constant/Api";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-function* getUserRequest(data){
-    let response = yield call(api.user.list, data);
-    console.log(response);
+function* getUserRequest({payload:payload}){
+    try {
+        let response = yield call(api.user.list, payload);
+        yield put(getUsersSuccess(response.list));
+    } catch (error) {
+        yield put(getUsersFail(error.message));
+        toast.error(error.message);
+    }
 }
 
-function* createUserRequest(data){
+function* createUserRequest({payload:payload}){
+    console.log(payload);
 }
 
 
 function* editUserRequest(data){
-    console.log('create User',data)
 }
 
 function* deleteUserRequest(data){
-    console.log('create User',data)
 }
 
 function* resetPasswordUserRequest(data){
-    console.log('create User',data)
 }
 
 export default function* user(){

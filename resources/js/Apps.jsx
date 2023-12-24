@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router';
 import {PublicRoute, AdminRoute} from './Route';
 import GernalLayout from './Components/GernalLayout';
 import AuthenticatedLayout from './Components/AdminLayout';
+import { AdminMiddleware } from './Route/Middlewares';
 
 export default function Apps() {
     return (
@@ -23,9 +24,11 @@ export default function Apps() {
                     <Route key={index}
                         path={value.path}
                         element={
-                            <AuthenticatedLayout>
-                                {value.component}
-                            </AuthenticatedLayout>
+                            <AdminMiddleware>
+                                <AuthenticatedLayout>
+                                    {value.component}
+                                </AuthenticatedLayout>
+                            </AdminMiddleware>
                         }
                     />
                 ))}

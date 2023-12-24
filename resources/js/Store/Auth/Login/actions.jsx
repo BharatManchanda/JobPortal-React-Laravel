@@ -1,10 +1,18 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAIL} from './actionTypes';
+import {
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL
+} from './actionTypes';
 
-export const loginUserRequest = (payload) => {
+export const loginUserRequest = (payload, navigate) => {
     console.log(payload,'payload');
     return {
         type: LOGIN_REQUEST,
         payload: payload,
+        navigate: navigate,
     }
 }
 
@@ -18,14 +26,13 @@ export const loginUserFail = (payload) => ({
     payload: payload,
 });
 
-export const logoutUserRequest = (payload) => ({
+export const logoutUserRequest = (navigate) => ({
     type: LOGOUT_REQUEST,
-    payload: payload,
+    navigate: navigate,
 });
 
-export const logoutUserSuccess = (payload) => ({
+export const logoutUserSuccess = () => ({
     type: LOGOUT_SUCCESS,
-    payload: payload,
 });
 
 export const logoutUserFail = (payload) => ({

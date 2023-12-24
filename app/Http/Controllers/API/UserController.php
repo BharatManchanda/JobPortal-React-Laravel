@@ -20,8 +20,12 @@ class UserController extends Controller {
         return $this->userRepository->save($request);
     }
 
-    public function list() {
-        return $this->userRepository->getList();
+    public function update(UserRequest $request) {
+        return $this->userRepository->save($request);
+    }
+
+    public function list(Request $request) {
+        return $this->userRepository->getList($request);
     }
 
 }

@@ -10,12 +10,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUserRequest } from '../../../../Store/Auth/Login/actions';
 import { ToastContainer } from 'react-toastify';
 import Loader from '../../../../Components/Common/Loader';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [data, setData] = React.useState({
-        email:'',
-        password:'',
+        email:'admin@yopmail.com',
+        password:'password',
     });
+    const navigate = useNavigate();
+    React.useEffect(()=>{
+        let  token = localStorage.getItem('token');
+        let  user = JSON.parse(localStorage.getItem('user'));
+        if (token && user) {
+            if (user.role == 'admin' || user.role == 'recruiter'){
+                navigate(`/${user.role}/dashboard`);
+            } else {
+                navigate(`/`);
+            }
+        }
+    }, []);
     const dispatch = useDispatch();
     const login = useSelector(state => state.login);
 
@@ -27,8 +40,9 @@ function Login() {
         });
     }
     function handleSubmit(){
-        dispatch(loginUserRequest(data));
+        dispatch(loginUserRequest(data, navigate));
     }
+
     return (
         <>
             <Grid container mt={3}>

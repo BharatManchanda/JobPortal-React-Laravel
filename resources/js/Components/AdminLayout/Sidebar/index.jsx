@@ -24,8 +24,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -175,7 +175,9 @@ export default function Sidebar() {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem>
+                                    <Link to='/logout'>Logout</Link>
+                                </MenuItem>
                             </Menu>
                         </Grid>
                     </Grid>
