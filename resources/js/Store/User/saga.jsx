@@ -1,32 +1,68 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import {
-    GET_USERS_REQUEST,
-    CREATE_USERS_REQUEST,
-    EDIT_USERS_REQUEST,
-    DELETE_USERS_REQUEST,
+    GET_USER_LIST_REQUEST,
+    GET_USER_REQUEST,
+    CREATE_USER_REQUEST,
+    UPDATE_USER_REQUEST,
+    DELETE_USER_REQUEST,
     RESET_PASSWORD_USERS_REQUEST,
+    CHAT_USER_REQUEST,
 } from './actionTypes';
-import { getUsersSuccess, getUsersFail  } from "./actions";
+import {
+    getUserListSuccess,
+    getUserListFail,
+    createUserSuccess,
+    createUserFail,
+    getUserSuccess,
+    getUserFail,
+    updateUserSuccess,  
+    updateUserFail,  
+    chatUserSuccess,
+    chatUserFail,
+} from "./actions";
 import api from "../../Constant/Api";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+function* getUserListRequest({payload:payload}){
+    try {
+        let response = yield call(api.user.list, {...payload, page: 1 + payload.page});
+        yield put(getUserListSuccess(response.list));
+    } catch (error) {
+        yield put(getUserListFail(error.response.data.message));
+        toast.error(error.response.data.message);
+    }
+}
+
 function* getUserRequest({payload:payload}){
     try {
-        let response = yield call(api.user.list, payload);
-        yield put(getUsersSuccess(response.list));
+        let response = yield call(api.user.get, payload);
+        yield put(getUserSuccess(response.data))
     } catch (error) {
-        yield put(getUsersFail(error.message));
-        toast.error(error.message);
+        yield put(getUserFail(error.response.data.message));
+        toast.error(error.response.data.message);
     }
 }
 
 function* createUserRequest({payload:payload}){
-    console.log(payload);
+    try {
+        let response = yield call(api.user.create, payload);
+        yield put(createUserSuccess(response.data));
+    } catch (error) {
+        yield put(createUserFail(error.response.data.message));
+        toast.error(error.response.data.message);
+    }
 }
 
-
-function* editUserRequest(data){
+function* updateUserRequest({payload:payload}){
+    try {
+        let response = yield call(api.user.update, payload);
+        yield put(updateUserSuccess(response.data));
+        toast.success(response.message);
+    } catch (error) {
+        yield put(updateUserFail(error.response.data.message));
+        toast.error(error.response.data.message);
+    }
 }
 
 function* deleteUserRequest(data){
@@ -35,10 +71,20 @@ function* deleteUserRequest(data){
 function* resetPasswordUserRequest(data){
 }
 
+function* chatUserRequest({payload:payload}){
+    try {
+        let response = yield call(api.user.chat, payload);
+    } catch (error) {
+        toast.error(error.message);
+    }
+}
+
 export default function* user(){
-    yield takeLatest(GET_USERS_REQUEST, getUserRequest);
-    yield takeLatest(CREATE_USERS_REQUEST, createUserRequest);
-    yield takeLatest(EDIT_USERS_REQUEST, editUserRequest);
-    yield takeLatest(DELETE_USERS_REQUEST, deleteUserRequest);
+    yield takeLatest(GET_USER_LIST_REQUEST, getUserListRequest);
+    yield takeLatest(GET_USER_REQUEST, getUserRequest);
+    yield takeLatest(CREATE_USER_REQUEST, createUserRequest);
+    yield takeLatest(UPDATE_USER_REQUEST, updateUserRequest);
+    yield takeLatest(DELETE_USER_REQUEST, deleteUserRequest);
     yield takeLatest(RESET_PASSWORD_USERS_REQUEST, resetPasswordUserRequest);
+    yield takeLatest(CHAT_USER_REQUEST, chatUserRequest);
 }

@@ -2,6 +2,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { ThemeColor } from '../../../../Helpers/StyleConstant';
 import PersonIcon from '@mui/icons-material/Person';
+import WorkIcon from '@mui/icons-material/Work';
 
 const Menu = [
     {
@@ -16,12 +17,12 @@ const Menu = [
         to:'/admin/user',
         isSubmenu: false,
     },
-    // {
-    //     label: 'Dashboard',
-    //     icon: <InboxIcon sx={{ color: ThemeColor.secondary }} />,
-    //     to:'/dashboard',
-    //     isSubmenu: false,
-    // },
+    {
+        label: 'Job',
+        icon: <WorkIcon sx={{ color: ThemeColor.secondary }} />,
+        to:'/admin/job',
+        isSubmenu: false,
+    },
     // {
     //     label: 'Estimate',
     //     icon: <MailIcon sx={{ color: ThemeColor.secondary }} />,

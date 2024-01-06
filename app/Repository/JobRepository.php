@@ -1,21 +1,19 @@
 <?php
 
 namespace App\Repository;
-use App\Interface\UserInterface;
-use App\Models\User;
+use App\Interface\JobInterface;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-    class UserRepository implements UserInterface{
+    class JobRepository implements JobInterface{
 
         public function getList(Request $request) {
             try {
-                $query = User::query();
-                $list = $request->rowsPerPage ? $query->paginate($request->rowsPerPage) : $query->get();
+                $list = Job::where('status', 'active')->paginate($request->rowsPerPage);
                 return response()->json([
                     'status' => true,
-                    'message' => 'User List fetched successfully',
+                    'message' => 'Job list fetched successfully',
                     'list' => $list
                 ]);
             } catch (\Throwable $th) {
@@ -28,24 +26,11 @@ use Illuminate\Support\Facades\Hash;
 
         public function save(Request $request, $id=null) {
             try {
-                $userDetail = $request->only(['name', 'email', 'password', 'phone']);
-                $authUser = Auth::user();
-                $userDetail['password'] = Hash::make($request->password);
-
-                if ($authUser && $authUser->role == 'admin') {
-                    $userDetail['role'] = $request->role;
-                }
-
-                if($id) {
-                    $data = User::findOrFail($id);
-                    $data->update($userDetail);
-                } else {
-                    $data = User::create($userDetail);
-                }
-
+                
+                $data ="test";
                 return response()->json([
                     'status' => true,
-                    'message' => 'User '.($request->id ? 'updated' : 'created').' successfully',
+                    'message' => 'Job '.($request->id ? 'updated' : 'created').' successfully',
                     'data' => $data,
                 ]);
             } catch (\Throwable $th) {
@@ -58,15 +43,15 @@ use Illuminate\Support\Facades\Hash;
 
         public function getDetails($id) {
             try {
-                $data = User::findOrFail($id);
+                $data = Job::findOrFail($id);
                 return response()->json([
                     'status' => true,
-                    'message' => 'Get user successfully',
+                    'message' => 'Get job successfully',
                     'data' => $data
                 ]);
             } catch (\Throwable $th) {
                 return response()->json([
-                    'status' => true,
+                    'status' => false,
                     'message' => $th->getMessage(),
                 ])->setStatusCode(422);
             }

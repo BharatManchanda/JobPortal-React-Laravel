@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\JobController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +28,25 @@ Route::post('login',[AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
 
-    #User API
+    # User API
     Route::prefix('user')->controller(UserController::class)->group(function () {
         Route::post('/','list');
-        Route::post('/create',[UserController::class, 'create']);
-        Route::put('/update',[UserController::class, 'update']);
+        Route::get('/{id}','get');
+        Route::post('/create','create');
+        Route::put('/{id}/update','update');
+        Route::post('/chat','chatMessage');
     });
+
+    # Job API
+    Route::resource('job', JobController::class);
+    // Route::prefix('job')->controller(JobController::class)->group(function () {
+        // Route::post('/','list');
+        // Route::get('/{id}','get');
+        // Route::post('/create','create');
+        // Route::put('/{id}/update','update');
+        // Route::post('/chat','chatMessage');
+        // Route::resource('/job','chatMessage');
+    // });
 
     Route::post('logout',[AuthController::class, 'logout']);
 });

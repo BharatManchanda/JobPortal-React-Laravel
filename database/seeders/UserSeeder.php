@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
+                'phone' => $faker->numerify('##########'),
                 'password' => Hash::make('password'),
                 'hash_link' => $faker->name,
                 'role' => $index % 2 == 0 ? 'client' : 'recruiter',

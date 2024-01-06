@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
 class AuthController extends Controller
 {
     //
@@ -16,6 +15,8 @@ class AuthController extends Controller
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
                     $token = $user->createToken('aceess token')->accessToken;
+                } else {
+                    throw new \Exception("Password does not match");
                 }
             }
             return response()->json([

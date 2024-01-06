@@ -5,7 +5,8 @@ export const ThemeColor = {
     success: '#16FF00', // gold //16FF00 green
     accent: '#E45826', // kessari
     background: '#E6D5B8', // off - white
-    white: '#FFFFFF'
+    white: '#FFFFFF', // white
+    error: '#FF3333', //red
 }
 
 export const RoleColor = {

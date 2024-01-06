@@ -38,7 +38,7 @@ export const del = async (url, config={}) => {
     .then((response) => response.data)
 }
 
-export const put = async (url, config={}) => {
+export const put = async (url, data, config={}) => {
     return await api
     .put(url, {...data}, {...config})
     .then((response) => response.data)

@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
 
-use App\Repository\UserRepository;
+# Interface
+use App\Interface\JobInterface;
 use App\Interface\UserInterface;
+
+# Repository
+use App\Repository\UserRepository;
+use App\Repository\JobRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -16,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(UserInterface::class, UserRepository::class);
+        $this->app->bind(JobInterface::class, JobRepository::class);
     }
 
     /**

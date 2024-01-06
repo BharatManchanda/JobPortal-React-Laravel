@@ -3,6 +3,7 @@ const User = {
     name: "",
     email: "",
     phone: "",
+    role:"client",
     password: "",
     confirm_password: "",
 };

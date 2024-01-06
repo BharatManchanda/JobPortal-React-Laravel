@@ -24,3 +24,17 @@
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: gold !important;
 }
+
+.css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input:focus{
+    border-color: gold !important;
+    // display: none !important;
+    // border-color: gold !important;
+    // color: $secondary !important;
+    // outline: $secondary !important;
+    // outline-color: $secondary !important;
+    
+}
+.css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input::before{
+    border-bottom: 1px solid $secondary !important
+
+}

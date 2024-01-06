@@ -22,7 +22,9 @@ function* loginRequest({payload:payload, navigate:navigate}) {
         }
         toast.success(response.message)
     } catch (error) {
-        toast.error(error.message)
+        // console.log(error,":::error");
+        // alert(JSON.stringify(error));
+        toast.error(error.response.data.message)
         yield put(loginUserFail(error))
     }
 }

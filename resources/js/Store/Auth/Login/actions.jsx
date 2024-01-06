@@ -8,7 +8,6 @@ import {
 } from './actionTypes';
 
 export const loginUserRequest = (payload, navigate) => {
-    console.log(payload,'payload');
     return {
         type: LOGIN_REQUEST,
         payload: payload,

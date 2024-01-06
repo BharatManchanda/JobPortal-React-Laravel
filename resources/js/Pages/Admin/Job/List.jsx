@@ -61,8 +61,8 @@ export default function List() {
     return (
         <>
             <Box display='flex' justifyContent={'space-between'} sx={{marginBottom:'10px'}}>
-                <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>User List</Typography>
-                <Button component={Link} to="/admin/user/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
+                <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>Job List</Typography>
+                <Button component={Link} to="/admin/job/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
             </Box>
             <TableContainer component={Paper}>
                 <ToastContainer/>

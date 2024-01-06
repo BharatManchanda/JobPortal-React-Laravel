@@ -26,10 +26,10 @@ class UserRequest extends FormRequest
         $rules = [
             "name" => "required|min:3|max:50",
             "phone" => "required|string|digits:10",
-            "email" => "required|email|unique:users,email",
+            "email" => "required|email|unique:users,email,".$this->id,
         ];
         if($user && $user->role == 'admin') {
-            $rules["role"] = "required|in:admin,client,business";
+            $rules["role"] = "required|in:admin,client,recruiter";
         }
 
         if($this->isMethod('post')){
