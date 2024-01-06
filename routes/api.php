@@ -35,6 +35,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/create','create');
         Route::put('/{id}/update','update');
         Route::post('/chat','chatMessage');
+        Route::delete('/{id}/delete','delete');
     });
 
     # Job API

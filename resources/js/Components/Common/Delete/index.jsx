@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Delete() {
+export default function Delete({handleDelete, id}) {
 	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {
@@ -44,7 +44,7 @@ export default function Delete() {
 				maxWidth='xs'
 			>
 				<DialogTitle>
-					<Typography align='center' variant='h5' sx={{fontWeight:'bolder'}}>Are You Sure?</Typography>
+					<Typography align='center' fontSize={'32px'} sx={{fontWeight:'bolder'}}>Are You Sure?</Typography>
 				</DialogTitle>
 				<IconButton
 					aria-label="close"
@@ -80,7 +80,7 @@ export default function Delete() {
 					mb:'15px'
 				}}>
 					<ThemeButton variant="contained" color="primary" onClick={handleClose}>Cancel</ThemeButton>
-					<ThemeButton variant="contained" color="error" onClick={handleClose}>Delete</ThemeButton>
+					<ThemeButton variant="contained" color="error" onClick={() => { handleDelete(id) }}>Delete</ThemeButton>
 				</DialogActions>
 			</Dialog>
 		</React.Fragment>

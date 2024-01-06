@@ -13,6 +13,24 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->longText('description');
+            // $table->string('role');
+            $table->string('industry_type');
+            $table->string('department');
+            $table->string('job_type');
+            // $table->string('role_category');
+            $table->string('education');
+            $table->longText('key_skills')->nullable();;
+            $table->string('job_location');
+            $table->longText('benefits')->nullable();;
+            $table->longText('responsibilities')->nullable();
+            $table->longText('preferred_skills')->nullable();
+            $table->string('experience');
+            $table->string('ability_to_relocate');
+            $table->string('speak_employe_phone_no')->nullable();
+            $table->string('shift_schedule');
+            $table->string('status')->default('inactive');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Stmt\TryCatch;
 
     class UserRepository implements UserInterface{
 
@@ -68,8 +69,25 @@ use Illuminate\Support\Facades\Hash;
                 return response()->json([
                     'status' => true,
                     'message' => $th->getMessage(),
+                    ])->setStatusCode(422);
+                }
+            }
+            
+            public function delete($id=null){
+                try {
+                    $user = User::findOrFail($id);
+                    $user->delete();
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'User Delete Successfully',
+                        'data' => $user,
+                    ]);
+                } catch (\Throwable $th) {
+                return response()->json([
+                    'status' => true,
+                    'message' => $th->getMessage(),
                 ])->setStatusCode(422);
             }
         }
     }
-?>
+    ?>

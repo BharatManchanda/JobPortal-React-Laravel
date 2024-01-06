@@ -38,5 +38,9 @@ class UserController extends Controller {
         event(new ChatEvent($senderId, $request->receiver_id, $request->message));
         return false;
     }
+    
+    public function delete($id) {
+        return $this->userRepository->delete($id);
+    }
 
 }

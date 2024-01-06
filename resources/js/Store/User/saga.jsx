@@ -17,6 +17,8 @@ import {
     getUserFail,
     updateUserSuccess,  
     updateUserFail,  
+    deleteUserSuccess,
+    deleteUserFail,
     chatUserSuccess,
     chatUserFail,
 } from "./actions";
@@ -65,10 +67,19 @@ function* updateUserRequest({payload:payload}){
     }
 }
 
-function* deleteUserRequest(data){
+function* deleteUserRequest({payload:payload}){
+    try {
+        let response = yield call(api.user.delete, payload);
+        yield put(deleteUserSuccess(response.data));
+        toast.success(response.message);
+    } catch (error) {
+        yield put(deleteUserFail(error.response.data.message));
+        toast.error(error.response.data.message);
+    }
 }
 
 function* resetPasswordUserRequest(data){
+
 }
 
 function* chatUserRequest({payload:payload}){

@@ -10,7 +10,7 @@ import { Box, Button, Chip, Grid, IconButton, TablePagination, Typography } from
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
-import { getUserListRequest } from '../../../Store/User/actions';
+import { getUserListRequest, deleteUserRequest } from '../../../Store/User/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../Components/Common/Loader';
 import { ToastContainer } from 'react-toastify';
@@ -50,8 +50,9 @@ export default function List() {
         });
     }
 
-    function handleDelete(){
-        
+    function handleDelete(id){
+        dispatch(deleteUserRequest({id:id}));
+        dispatch(getUserListRequest(controller));
     }
 
     React.useEffect(() => {
@@ -64,11 +65,9 @@ export default function List() {
                 <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>User List</Typography>
                 <Button component={Link} to="/admin/user/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
             </Box>
-            <TableContainer component={Paper}>
                 <ToastContainer/>
                 <Loader loading={user.loading} />
-                {user.loading || (!!user.list.length ?
-                <>
+                {user.loading || (!!user.list.length ? <TableContainer component={Paper}>
                     <Table size="medium" aria-label="user-list">
                         <TableHead>
                             <TableRow>
@@ -105,12 +104,7 @@ export default function List() {
                                         }}>
                                             <RemoveRedEyeOutlinedIcon/>
                                         </IconButton>
-                                        {/* <IconButton aria-label="delete" size="small" sx={{
-                                            color:ThemeColor.primary
-                                        }}>
-                                            <DeleteOutlinedIcon/>
-                                        </IconButton> */}
-                                        <Delete />
+                                        <Delete handleDelete={handleDelete} id={row.id} />
                                         <IconButton aria-label="chat" component={Link} to={`${row.id}/chat`} size="small" sx={{
                                             color:ThemeColor.primary
                                         }}>
@@ -129,9 +123,9 @@ export default function List() {
                         rowsPerPage={controller.rowsPerPage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
-                </> : <NotFound />
+                    </TableContainer>
+                 : <NotFound />
                 )}
-            </TableContainer>
         </>
     );
 }

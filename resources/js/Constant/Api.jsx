@@ -11,11 +11,11 @@ const api = {
     user:{
         list: (data) => post(`/user?page=${1+data.page}`, data),
         get: (data) => get(`/user/${data.id}`),
-        create: (data) => post('user/create', data),
-        update: (data) => put(`user/${data.id}/update`, data),
-        delete: (data) => post('user/delete', data),
-        chat: (data) => post('user/chat', data),
-        resetPassword: (data) => post('user/reset-password', data),
+        create: (data) => post(`/user/create`, data),
+        update: (data) => put(`/user/${data.id}/update`, data),
+        delete: (data) => del(`/user/${data.id}/delete`),
+        chat: (data) => post(`/user/chat`, data),
+        resetPassword: (data) => post(`user/reset-password`, data),
     }
 };
 
