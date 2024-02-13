@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->longText('description');
             // $table->string('role');
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->string('speak_employe_phone_no')->nullable();
             $table->string('shift_schedule');
             $table->string('status')->default('inactive');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,25 +4,40 @@ import { ThemeColor } from '../../../../Helpers/StyleConstant';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 
-const Menu = [
-    {
-        label: 'Dashboard',
-        icon: <DashboardIcon sx={{ color: ThemeColor.secondary }} />,
-        to:'/admin/dashboard',
-        isSubmenu: false,
-    },
-    {
-        label: 'User',
-        icon: <PersonIcon sx={{ color: ThemeColor.secondary }} />,
-        to:'/admin/user',
-        isSubmenu: false,
-    },
-    {
-        label: 'Job',
-        icon: <WorkIcon sx={{ color: ThemeColor.secondary }} />,
-        to:'/admin/job',
-        isSubmenu: false,
-    },
+const Menus = {
+    admin:[
+        {
+            label: 'Dashboard',
+            icon: <DashboardIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/admin/dashboard',
+            isSubmenu: false,
+        },
+        {
+            label: 'User',
+            icon: <PersonIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/admin/user',
+            isSubmenu: false,
+        },
+        {
+            label: 'Job',
+            icon: <WorkIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/admin/job',
+            isSubmenu: false,
+        },
+    ],
+    recruiter:[
+        {
+            label: 'Dashboard',
+            icon: <DashboardIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/recruiter/dashboard',
+            isSubmenu: false,
+        },
+        {
+            label: 'Job',
+            icon: <WorkIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/recruiter/job',
+            isSubmenu: false,
+        },
     // {
     //     label: 'Estimate',
     //     icon: <MailIcon sx={{ color: ThemeColor.secondary }} />,
@@ -65,6 +80,7 @@ const Menu = [
     //         },
     //     ],
     // },
-]
+    ]
+}
 
-export default Menu;
+export default Menus;

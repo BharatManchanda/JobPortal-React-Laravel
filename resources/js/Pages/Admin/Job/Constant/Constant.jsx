@@ -1,0 +1,3 @@
+const industryType = {
+    // Web developer
+}

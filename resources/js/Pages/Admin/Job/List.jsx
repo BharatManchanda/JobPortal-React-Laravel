@@ -23,12 +23,56 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import Delete from '../../../Components/Common/Delete';
+import { TreeItem, TreeView } from '@mui/x-tree-view';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function List() {
     const [controller, setController] = React.useState({
         page: 0,
         rowsPerPage: 25
     });
+
+    const [treeData, setTreeData] = React.useState([
+        {
+            nodeId: '1',
+            label: 'Applications',
+            children: [
+            { nodeId: '2', label: 'Calendar' },
+            { nodeId: '7', label: 'Calendar 7' },
+            ],
+        },
+        {
+            nodeId: '5',
+            label: 'Documents',
+            children: [
+            {
+                nodeId: '10',
+                label: 'OSS',
+                children: [
+                    {
+                        nodeId: '50',
+                        label: ' OSS 2',
+                        children: [
+                            {
+                                nodeId: '51',
+                                label: ' OSS 3',
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                nodeId: '6',
+                label: 'MUI',
+                children: [
+                { nodeId: '8', label: 'index.js' },
+                ],
+            },
+            ],
+        },
+    ]);
+
     const dispatch = useDispatch();
     let user = useSelector(state => state.user);
     
@@ -58,8 +102,65 @@ export default function List() {
         dispatch(getUserListRequest(controller));
     },[controller])
 
+
+
+    const MyTreeView = ({ nodes }) => {
+        const renderTree = (nodes) => (
+          nodes.map((node) => (
+            <TreeItem key={node.nodeId} nodeId={node.nodeId} label={node.label}>
+              {Array.isArray(node.children) && node.children.length > 0 ? (
+                renderTree(node.children)
+              ) : null}
+            </TreeItem>
+          ))
+        );
+      
+        return (
+          <TreeView
+            aria-label="file system navigator"
+            defaultCollapseIcon={<ExpandMoreIcon />}
+            defaultExpandIcon={<ChevronRightIcon />}
+          >
+            {renderTree(nodes)}
+          </TreeView>
+        );
+    }
+
+    // const App = () => {
+    //     const [treeData, setTreeData] = useState([
+    //         {
+    //             nodeId: '1',
+    //             label: 'Applications',
+    //             children: [
+    //             { nodeId: '2', label: 'Calendar' },
+    //             // Add more nested nodes as needed
+    //             ],
+    //         },
+    //         {
+    //             nodeId: '5',
+    //             label: 'Documents',
+    //             children: [
+    //             {
+    //                 nodeId: '10',
+    //                 label: 'OSS',
+    //             },
+    //             {
+    //                 nodeId: '6',
+    //                 label: 'MUI',
+    //                 children: [
+    //                 { nodeId: '8', label: 'index.js' },
+    //                 ],
+    //             },
+    //             ],
+    //         },
+    //     ]);
+      
+    //     return <MyTreeView nodes={treeData} />;
+    // }
+
     return (
         <>
+            <MyTreeView nodes={treeData} />
             <Box display='flex' justifyContent={'space-between'} sx={{marginBottom:'10px'}}>
                 <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>Job List</Typography>
                 <Button component={Link} to="/admin/job/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
@@ -132,6 +233,24 @@ export default function List() {
                 </> : <NotFound />
                 )}
             </TableContainer>
+            <Box>
+                <TreeView
+                    aria-label="file system navigator"
+                    defaultCollapseIcon={<ExpandMoreIcon />}
+                    defaultExpandIcon={<ChevronRightIcon />}
+                    sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+                >
+                    <TreeItem nodeId="1" label="Applications">
+                        <TreeItem nodeId="2" label="Calendar" />
+                    </TreeItem>
+                    <TreeItem nodeId="5" label="Documents">
+                        <TreeItem nodeId="10" label="OSS" />
+                        <TreeItem nodeId="6" label="MUI">
+                        <TreeItem nodeId="8" label="index.js" />
+                        </TreeItem>
+                    </TreeItem>
+                </TreeView>
+            </Box>
         </>
     );
 }

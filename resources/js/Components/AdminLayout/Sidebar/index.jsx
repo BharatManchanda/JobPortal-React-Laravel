@@ -15,7 +15,6 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Badge, Box, Grid, Menu, MenuItem, Toolbar} from '@mui/material';
-import Menus from './Constant/constant';
 import { NavLink } from 'react-router-dom';
 import './style.scss'
 import { ThemeColor } from '../../../Helpers/StyleConstant';
@@ -26,6 +25,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import Menus from './Constant/constant';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -98,7 +98,7 @@ export default function Sidebar() {
     const [subMenu, setSubMenu] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const mobileMenuId = 'primary-search-account-menu-mobile';
-    const drawerWidth = 240;
+    let role = JSON.parse(localStorage.getItem('user')).role;
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
@@ -214,7 +214,7 @@ export default function Sidebar() {
                 </DrawerHeader>
                 <Divider color='white' />
                 <List>
-                    {Menus.map((menu, index) => (
+                    {Menus[role].map((menu, index) => (
                         <React.Fragment key={index}>
                             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton sx={{

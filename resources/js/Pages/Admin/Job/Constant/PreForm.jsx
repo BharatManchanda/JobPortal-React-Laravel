@@ -2,12 +2,12 @@ const Job = {
     id: null,
     title: "", // Web Developer
     description: "", // About Job Description
-    role: "", // Front End Developer
+    // role: "", // Front End Developer
     industry_type: "", //Web developer
     department: "", // Engineering - Software QA
     job_type: "", //Full-Time, Part-Time, Contract or Freelance Work, Temporary Employment, Internship, Seasonal Employment, Consulting, Remote or Telecommuting, Flextime or Flexible Schedule, Freelance or Gig Economy
-    role_category: "", // Software Development
-    Education: "", //
+    // role_category: "", // Software Development
+    education: "", //
     key_skills: "", //html, css, javscript
     job_location: "", // Mohali
     benefits: "", // Multi line benifits

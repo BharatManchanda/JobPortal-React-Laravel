@@ -2,7 +2,16 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
+
+# Model Class
+use App\Models\Job;
+use App\Models\User;
+
+# Policies Class
+use App\Policies\JobPolicy;
+use App\Policies\UserPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -14,6 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         //
+        User::class => UserPolicy::class,
+        Job::class => JobPolicy::class,
     ];
 
     /**
@@ -21,6 +32,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // User Gate Policy
+        Gate::define('create-user', [UserPolicy::class, 'create']);
+        Gate::define('update-user', [UserPolicy::class, 'update']);
+        Gate::define('delete-user', [UserPolicy::class, 'delete']);
+        Gate::define('list-user', [UserPolicy::class, 'list']);
+        Gate::define('detail-user', [UserPolicy::class, 'detail']);
+        
+        // Job Gate Policy
+        Gate::define('create-job', [JobPolicy::class, 'create']);
+        Gate::define('update-job', [JobPolicy::class, 'update']);
+        Gate::define('delete-job', [JobPolicy::class, 'delete']);
+        Gate::define('list-job', [JobPolicy::class, 'list']);
+        Gate::define('detail-job', [JobPolicy::class, 'detail']);
     }
 }

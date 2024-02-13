@@ -23,11 +23,15 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import Delete from '../../../Components/Common/Delete';
+import Pay from './Pay';
+// import React, {useState} from 'react';
+// import ReactDOM from 'react-dom';
+// import {loadStripe} from '@stripe/stripe-js';
 
 export default function List() {
     const [controller, setController] = React.useState({
         page: 0,
-        rowsPerPage: 25
+        rowsPerPage: 25,
     });
     const dispatch = useDispatch();
     let user = useSelector(state => state.user);
@@ -84,7 +88,9 @@ export default function List() {
                                     <TableCell width={'10%'}>{row.id}</TableCell>
                                     <TableCell width={'20%'}>{row.name}</TableCell>
                                     <TableCell width={'25%'}>{row.email}</TableCell>
-                                    <TableCell width={'15%'}>{row.verify_at}</TableCell>
+                                    <TableCell width={'15%'}>
+                                        <Pay/>
+                                    </TableCell>
                                     <TableCell width={'10%'}>
                                         <Chip size='small' label={row.role} style={{
                                             borderRadius: "7px",

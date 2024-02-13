@@ -5,10 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { useDispatch } from 'react-redux';
 import { chatUserRequest } from '../../../Store/User/actions';
 import { useParams } from 'react-router';
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
 
-window.Pusher = Pusher;
 const ChatContainer = styled(Paper)`
   height: 400px;
   overflow-y: auto;

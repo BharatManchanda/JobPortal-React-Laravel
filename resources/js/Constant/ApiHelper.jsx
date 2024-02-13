@@ -18,7 +18,7 @@ export default function setAccessToken(){
 api.interceptors.response.use(
     (response) => response,
     (error) => Promise.reject(error)
-  );
+);
 
 export const get = async (url, config={}) => {
     return await api
