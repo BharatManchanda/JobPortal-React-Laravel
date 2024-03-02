@@ -1,15 +1,9 @@
-import { Radio, RadioGroup, FormControlLabel, FormLabel, Box, Button, FormControl, Grid, IconButton, InputLabel, OutlinedInput, TextField, Typography, Select, MenuItem, FormHelperText } from '@mui/material'
+import { Box, FormControl, Grid, InputLabel, TextField, Typography, Select, MenuItem } from '@mui/material'
 import React from 'react'
 import PreForm from './Constant/PreForm';
 import { ThemeColor } from '../../../Helpers/StyleConstant';
-import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUsersRequest, UpdateUserRequest, getUserRequest } from '../../../Store/User/actions';
 import Loader from '../../../Components/Common/Loader';
 import { ToastContainer } from 'react-toastify';
-import { useParams } from 'react-router';
 
 const CreateOrEdit = () => {
     const [data, setData] = React.useState(PreForm.Job);
@@ -36,6 +30,7 @@ const CreateOrEdit = () => {
                         size='small'
                         label="Title"
                         name='title'
+                        defaultValue={data.title}
                         value={data.title}
                         onChange={handleChange} fullWidth required
                         helperText=""

@@ -23,10 +23,6 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import Delete from '../../../Components/Common/Delete';
-import Pay from './Pay';
-// import React, {useState} from 'react';
-// import ReactDOM from 'react-dom';
-// import {loadStripe} from '@stripe/stripe-js';
 
 export default function List() {
     const [controller, setController] = React.useState({
@@ -89,7 +85,6 @@ export default function List() {
                                     <TableCell width={'20%'}>{row.name}</TableCell>
                                     <TableCell width={'25%'}>{row.email}</TableCell>
                                     <TableCell width={'15%'}>
-                                        <Pay/>
                                     </TableCell>
                                     <TableCell width={'10%'}>
                                         <Chip size='small' label={row.role} style={{

@@ -1,8 +1,11 @@
 import React, {Fragment} from 'react';
-import { Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 export default function Home(){
     return(
         <Fragment>
+            <Box container className="bg-orange-500	">
+jhbg
+            </Box>
             <Typography textAlign={'justify'}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
                 fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,

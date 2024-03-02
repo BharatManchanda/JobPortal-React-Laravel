@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, Chip, Grid, IconButton, TablePagination, Typography } from '@mui/material';
+import { Box, Button, Chip, IconButton, TablePagination, Typography } from '@mui/material';
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
@@ -32,46 +32,6 @@ export default function List() {
         page: 0,
         rowsPerPage: 25
     });
-
-    const [treeData, setTreeData] = React.useState([
-        {
-            nodeId: '1',
-            label: 'Applications',
-            children: [
-            { nodeId: '2', label: 'Calendar' },
-            { nodeId: '7', label: 'Calendar 7' },
-            ],
-        },
-        {
-            nodeId: '5',
-            label: 'Documents',
-            children: [
-            {
-                nodeId: '10',
-                label: 'OSS',
-                children: [
-                    {
-                        nodeId: '50',
-                        label: ' OSS 2',
-                        children: [
-                            {
-                                nodeId: '51',
-                                label: ' OSS 3',
-                            },
-                        ]
-                    },
-                ]
-            },
-            {
-                nodeId: '6',
-                label: 'MUI',
-                children: [
-                { nodeId: '8', label: 'index.js' },
-                ],
-            },
-            ],
-        },
-    ]);
 
     const dispatch = useDispatch();
     let user = useSelector(state => state.user);
@@ -126,41 +86,8 @@ export default function List() {
         );
     }
 
-    // const App = () => {
-    //     const [treeData, setTreeData] = useState([
-    //         {
-    //             nodeId: '1',
-    //             label: 'Applications',
-    //             children: [
-    //             { nodeId: '2', label: 'Calendar' },
-    //             // Add more nested nodes as needed
-    //             ],
-    //         },
-    //         {
-    //             nodeId: '5',
-    //             label: 'Documents',
-    //             children: [
-    //             {
-    //                 nodeId: '10',
-    //                 label: 'OSS',
-    //             },
-    //             {
-    //                 nodeId: '6',
-    //                 label: 'MUI',
-    //                 children: [
-    //                 { nodeId: '8', label: 'index.js' },
-    //                 ],
-    //             },
-    //             ],
-    //         },
-    //     ]);
-      
-    //     return <MyTreeView nodes={treeData} />;
-    // }
-
     return (
         <>
-            <MyTreeView nodes={treeData} />
             <Box display='flex' justifyContent={'space-between'} sx={{marginBottom:'10px'}}>
                 <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>Job List</Typography>
                 <Button component={Link} to="/admin/job/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
@@ -233,24 +160,6 @@ export default function List() {
                 </> : <NotFound />
                 )}
             </TableContainer>
-            <Box>
-                <TreeView
-                    aria-label="file system navigator"
-                    defaultCollapseIcon={<ExpandMoreIcon />}
-                    defaultExpandIcon={<ChevronRightIcon />}
-                    sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-                >
-                    <TreeItem nodeId="1" label="Applications">
-                        <TreeItem nodeId="2" label="Calendar" />
-                    </TreeItem>
-                    <TreeItem nodeId="5" label="Documents">
-                        <TreeItem nodeId="10" label="OSS" />
-                        <TreeItem nodeId="6" label="MUI">
-                        <TreeItem nodeId="8" label="index.js" />
-                        </TreeItem>
-                    </TreeItem>
-                </TreeView>
-            </Box>
         </>
     );
 }
