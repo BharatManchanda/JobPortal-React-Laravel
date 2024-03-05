@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Checkbox, FormControlLabel, FormGroup, Grid, Paper, TextField, Typography, Button } from '@mui/material';
+import { Divider, Checkbox, FormControlLabel, FormGroup, Grid, Paper, TextField, Typography, Button, Box } from '@mui/material';
 import ThemeButton from '../../../../Components/Common/ThemeButton';
 import { Link, NavLink } from 'react-router-dom';
 import { ThemeColor } from '../../../../Helpers/StyleConstant';
@@ -45,6 +45,7 @@ function Login() {
 
     return (
         <>
+        <Box component="main" sx={{ p: 10 }}>
             <Grid container mt={3}>
                 <Grid item lg={5}>
                     <ToastContainer />
@@ -110,6 +111,7 @@ function Login() {
                     <LoginImage />
                 </Grid>
             </Grid>
+        </Box>
         </>
     );
 }

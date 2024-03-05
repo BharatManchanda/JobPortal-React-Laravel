@@ -10,9 +10,11 @@ import Chat from "../Pages/Admin/User/Chat";
 
 import JobCreateOrEdit from "../Pages/Admin/Job/CreateOrEdit";
 import JobList from "../Pages/Admin/Job/List";
+import Job from "../Pages/Public/Job";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
+    { path:'/jobs', component: <Job /> },
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },
     { path:'/register', component: <Register /> },

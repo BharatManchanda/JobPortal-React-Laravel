@@ -7,9 +7,7 @@ export default function GernalLayout({children}){
         <React.Fragment>
             <Box>
                 <Header />
-                    <Box component="main" sx={{ p: 10 }}>
                     {children}
-                    </Box>
                 <Footer />
             </Box>
         </React.Fragment>
