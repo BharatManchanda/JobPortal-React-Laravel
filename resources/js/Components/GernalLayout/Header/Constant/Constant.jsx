@@ -6,22 +6,22 @@ export const Links = [
     },
     {
         label:'Jobs',
-        to: 'jobs',
+        to: '/jobs',
         active: '',
     },
     {
         label:'Companies',
-        to: 'companies',
+        to: '/companies',
         active: '',
     },
     {
         label:'Services',
-        to: 'services',
+        to: '/services',
         active: '',
     },
     {
         label:'Recuriters',
-        to: 'recuriters',
+        to: '/recuriters',
         active: '',
     },
 ];

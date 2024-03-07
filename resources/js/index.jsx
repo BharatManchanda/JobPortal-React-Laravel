@@ -8,10 +8,11 @@ import store from './Store/index.jsx';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
+
 root.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <Apps />
-            </BrowserRouter>
-        </Provider>
-    );
+    <Provider store={store}>
+        <BrowserRouter>
+            <Apps />
+        </BrowserRouter>
+    </Provider>
+);

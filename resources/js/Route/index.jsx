@@ -11,10 +11,13 @@ import Chat from "../Pages/Admin/User/Chat";
 import JobCreateOrEdit from "../Pages/Admin/Job/CreateOrEdit";
 import JobList from "../Pages/Admin/Job/List";
 import Job from "../Pages/Public/Job";
+import Companies from "../Pages/Public/Companies";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
     { path:'/jobs', component: <Job /> },
+    { path:'/companies', component: <Companies /> },
+
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },
     { path:'/register', component: <Register /> },

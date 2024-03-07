@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function FastForward() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, position: 'sticky', top:80 }}>
         <CardContent>
             <Typography gutterBottom variant="subtitle1" fontWeight={'bolder'}>
                 Get 3X more profile views from it recruiters

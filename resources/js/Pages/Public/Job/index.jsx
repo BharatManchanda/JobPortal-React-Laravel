@@ -3,6 +3,7 @@ import React from 'react';
 import JobCard from './Component/JobCard';
 import Filter from './Component/Filter';
 import FastForward from './Component/RigthCard';
+import PaginationButton from '../../../Components/Common/Pagination/Pagination';
 
 export default function Job() {
     return (
@@ -26,7 +27,6 @@ export default function Job() {
                                 value={10}
                                 label="Sort By"
                                 size='small'
-                                // onChange={handleChange}
                             >
                                 <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
@@ -36,12 +36,15 @@ export default function Job() {
                         </Box>
                     </Box>
                     {
-                        Array(6).fill("").map((value, key) => (
+                        Array(20).fill("").map((value, key) => (
                             <React.Fragment key={key}>
                                 <JobCard />
                             </React.Fragment>
                         ))
                     }
+                    <Box display={'flex'} justifyContent={'center'}>
+                        <PaginationButton />
+                    </Box>
                 </Grid>
                 <Grid item lg={3}>
                     <FastForward />

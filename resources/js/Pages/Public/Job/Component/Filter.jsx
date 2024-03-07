@@ -1,13 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, Checkbox, Divider, FormControlLabel, FormGroup, Slider } from '@mui/material';
+import { Box, Button, Checkbox, Divider, FormControlLabel, FormGroup, Slider } from '@mui/material';
 
 export default function Filter() {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, position: 'sticky', top:80}}>
             <CardContent>
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                     <Typography variant="button" component="div">
