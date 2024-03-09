@@ -26,7 +26,7 @@ function DrawerAppBar(props) {
     const user = JSON.parse(localStorage.getItem('user'));
     const settings = [
         {
-            href:`${user?.role}/dashboard`,
+            href:`/${user?.role}/dashboard`,
             label: 'Dashboard',
         },
         // {

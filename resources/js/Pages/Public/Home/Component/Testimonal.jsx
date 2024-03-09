@@ -18,7 +18,7 @@ export default function Testimonal() {
 	const [expanded, setExpanded] = React.useState(false);
 
 	return (
-		<Card sx={{ maxWidth: 455, p:5, borderRadius:'15px', boxShadow:'1px 1px 13px -3px'}}>
+		<Card sx={{ maxWidth: 455, p:5, borderRadius:'15px'}}  variant='outlined'>
 			<CardContent>
 				<Rating name="read-only" value={3} readOnly />
 				<Typography variant="h6" fontWeight={'bolder'} color="text.primary">

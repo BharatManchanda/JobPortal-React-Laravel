@@ -12,11 +12,13 @@ import JobCreateOrEdit from "../Pages/Admin/Job/CreateOrEdit";
 import JobList from "../Pages/Admin/Job/List";
 import Job from "../Pages/Public/Job";
 import Companies from "../Pages/Public/Companies";
+import Services from "../Pages/Public/Services";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
     { path:'/jobs', component: <Job /> },
     { path:'/companies', component: <Companies /> },
+    { path:'/services', component: <Services /> },
 
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },

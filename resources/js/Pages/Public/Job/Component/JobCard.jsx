@@ -11,7 +11,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default function JobCard() {
     return (
-        <Card sx={{borderRadius:'10px', mb: '15px'}}>
+        <Card sx={{borderRadius:'10px', mb: '15px'}} variant='outlined'>
             <CardContent>
                 <Grid container>
                     <Grid item lg={9}>
