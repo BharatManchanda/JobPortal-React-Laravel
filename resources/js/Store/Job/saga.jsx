@@ -1,5 +1,7 @@
-import { put, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import api from "../../Constant/Api";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import {
     GET_JOB_LIST_REQUEST,
@@ -24,6 +26,7 @@ import {
 
 function* getJobListRequest ({payload:payload}) {
     try{
+        console.log("ghghfcgfc");
         let response = yield call(api.job.list, {...payload, page: 1 + payload.page});
         yield put(getJobListSuccess(response.data))
     } catch (error) {
@@ -45,6 +48,7 @@ function* getJobRequest ({payload:payload}) {
 function* createJobRequest ({payload:payload}) {
     try{
         let response = yield call(api.job.create, {payload});
+        console.log(response, "create");
         yield put(createJobSuccess(response.data))
     } catch (error) {
         yield put(createJobFail(error.response.data.message));

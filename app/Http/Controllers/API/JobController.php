@@ -41,6 +41,7 @@ class JobController extends Controller
     public function create(Request $request)
     {
         try {
+            dd("done");
             $data = $this->jobInterface->save($request);
             return response()->json([
                 'status' => true,

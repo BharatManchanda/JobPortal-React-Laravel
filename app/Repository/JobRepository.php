@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
                 'experience', 'ability_to_relocate', 'speak_employe_phone_no', 'shift_schedule', 'status',
             ]);
 
+            $data['user_id'] = Auth::user()->id;
+
             if ($id) {
                 $job = Job::findOrFail($id);
                 $job->update($data);

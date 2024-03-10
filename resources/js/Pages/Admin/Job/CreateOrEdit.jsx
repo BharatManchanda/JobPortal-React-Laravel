@@ -6,6 +6,7 @@ import Loader from '../../../Components/Common/Loader';
 import { ToastContainer } from 'react-toastify';
 import Constant from './Constant/Constant';
 import { useDispatch } from 'react-redux';
+import { createJobRequest } from '../../../Store/Job/actions';
 
 const CreateOrEdit = () => {
     const [data, setData] = React.useState(PreForm.Job);
@@ -28,7 +29,7 @@ const CreateOrEdit = () => {
     }
 
     const handleSubmit = () => {
-        dispatch();
+        dispatch(createJobRequest(data));
     }
 
     return (
@@ -40,7 +41,6 @@ const CreateOrEdit = () => {
             </Grid>
             <Grid container spacing={2}>
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Title</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -55,7 +55,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Industry Type</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -69,7 +68,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Description</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -85,7 +83,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Preferred Skills</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -101,7 +98,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Department</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -115,7 +111,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Education</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -134,7 +129,6 @@ const CreateOrEdit = () => {
                             <Chip key={index} label={value} color='primary' onDelete={() => handleDelete(value)} sx={{mr:1, mb:1}} />
                         ))}
                     </Box>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Key Skills</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -142,6 +136,7 @@ const CreateOrEdit = () => {
                         label="Key Skills"
                         name='key_skills'
                         value={enter}
+                        placeholder='Please type Key skill then preass enter'
                         onChange={(e) => { setEnter(e.target.value) } } fullWidth required
                         helperText=""
                         onKeyUp={(event) => {
@@ -154,10 +149,10 @@ const CreateOrEdit = () => {
                             }
                         }}
                     />
+                    <Typography variant='caption' color={'success'}>Please type Key skill then preass enter</Typography>
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Job Location</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -171,7 +166,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Benefits</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -180,14 +174,13 @@ const CreateOrEdit = () => {
                         rows={3}
                         label="Benefits"
                         name='benefits'
-                        value={data.job_location}
+                        value={data.benefits}
                         onChange={handleChange} fullWidth required
                         helperText=""
                     />
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Responsibilities</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -196,22 +189,22 @@ const CreateOrEdit = () => {
                         rows={3}
                         label="Responsibilities"
                         name='responsibilities'
-                        value={data.job_location}
+                        value={data.responsibilities}
                         onChange={handleChange} fullWidth required
                         helperText=""
                     />
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Experience</Typography>
                     <FormControl required size='small'>
                         <InputLabel>Experience</InputLabel>
                         <Select
+                            name={'experience'}
                             value={data.experience}
                             label="Experience"
                             onChange={handleChange}
                         >
-                            <MenuItem value={'fresher'}>Fresher</MenuItem>
+                            <MenuItem value={0}>Fresher</MenuItem>
                             {Array(10).fill().map((_, index) => (
                                 <MenuItem key={index} value={index+1}>{index+1} Year</MenuItem>
                             ))}
@@ -220,7 +213,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Ability to Relocate</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -235,7 +227,6 @@ const CreateOrEdit = () => {
 
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Speak Employee Phone No</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -249,7 +240,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Shift Schedule</Typography>
                     <TextField
                         error={false ? true : false}
                         type='text'
@@ -263,7 +253,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Job Type</Typography>
                     <FormControl required size='small'>
                         <InputLabel>Job Type</InputLabel>
                         <Select
@@ -279,7 +268,6 @@ const CreateOrEdit = () => {
                 </Grid>
 
                 <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                    <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>Status</Typography>
                     <FormControl required size='small'>
                         <InputLabel>Status</InputLabel>
                         <Select

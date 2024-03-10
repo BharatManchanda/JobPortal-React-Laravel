@@ -29,4 +29,8 @@ class Job extends Model
         'shift_schedule',
         'status',
     );
+
+    protected $casts = [
+        'key_skills' => 'array',
+    ];
 }

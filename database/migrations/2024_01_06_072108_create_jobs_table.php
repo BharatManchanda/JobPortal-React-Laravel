@@ -25,7 +25,7 @@ return new class extends Migration
             $table->longText('benefits')->nullable();;
             $table->longText('responsibilities')->nullable();
             $table->longText('preferred_skills')->nullable();
-            $table->string('experience');
+            $table->integer('experience');
             $table->string('ability_to_relocate');
             $table->string('speak_employe_phone_no')->nullable();
             $table->string('shift_schedule');
