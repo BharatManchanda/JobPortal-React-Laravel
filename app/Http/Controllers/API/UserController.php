@@ -39,8 +39,8 @@ class UserController extends Controller {
         return false;
     }
     
-    public function delete($id) {
-        return $this->userRepository->delete($id);
+    public function destroy($id) {
+        return $this->userRepository->destroy($id);
     }
 
 }

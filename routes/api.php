@@ -35,19 +35,16 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/create','create');
         Route::put('/{id}/update','update');
         Route::post('/chat','chatMessage');
-        Route::delete('/{id}/delete','delete');
+        Route::delete('/{id}/delete','destroy');
     });
 
     # Job API
-    Route::resource('job', JobController::class);
-    // Route::prefix('job')->controller(JobController::class)->group(function () {
-        // Route::post('/','list');
-        // Route::get('/{id}','get');
-        // Route::post('/create','create');
-        // Route::put('/{id}/update','update');
-        // Route::post('/chat','chatMessage');
-        // Route::resource('/job','chatMessage');
-    // });
+    Route::prefix('job')->controller(JobController::class)->group(function () {
+        Route::post('/','list');
+        Route::get('/{id}','get');
+        Route::post('/create','create');
+        Route::put('/{id}/update','update');
+    });
 
     Route::post('logout',[AuthController::class, 'logout']);
 });

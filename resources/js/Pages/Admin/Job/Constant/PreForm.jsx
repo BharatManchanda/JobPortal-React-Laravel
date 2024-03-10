@@ -8,7 +8,7 @@ const Job = {
     job_type: "", //Full-Time, Part-Time, Contract or Freelance Work, Temporary Employment, Internship, Seasonal Employment, Consulting, Remote or Telecommuting, Flextime or Flexible Schedule, Freelance or Gig Economy
     // role_category: "", // Software Development
     education: "", //
-    key_skills: "", //html, css, javscript
+    key_skills: [], //html, css, javscript
     job_location: "", // Mohali
     benefits: "", // Multi line benifits
     responsibilities: "", // Multi line benifits

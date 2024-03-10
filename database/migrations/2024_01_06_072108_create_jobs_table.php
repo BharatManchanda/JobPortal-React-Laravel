@@ -16,11 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->longText('description');
-            // $table->string('role');
             $table->string('industry_type');
             $table->string('department');
             $table->string('job_type');
-            // $table->string('role_category');
             $table->string('education');
             $table->longText('key_skills')->nullable();;
             $table->string('job_location');

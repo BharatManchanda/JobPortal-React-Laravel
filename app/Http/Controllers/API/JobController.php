@@ -20,23 +20,39 @@ class JobController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->jobInterface->getList($request);
+        try {
+            $list = $this->jobInterface->getList($request);
+            return response()->json([
+                'status' => true,
+                'message' => 'Job list fetched successfully',
+                'list' => $list
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(422);
+        }
     }
     
     /**
-     * Store a newly created resource in storage.
+     * Create a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        return $this->jobInterface->save($request);
-    }
-    
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return $this->jobInterface->getDetails($id);
+        try {
+            $data = $this->jobInterface->save($request);
+            return response()->json([
+                'status' => true,
+                'message' => 'Job '.($request->id ? 'updated' : 'created').' successfully',
+                "data" => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(422);
+        }
     }
     
     /**
@@ -44,14 +60,59 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->jobInterface->save($request, $id);
+        try {
+            $data = $this->jobInterface->save($request, $id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Update job successfully',
+                'data' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(422);
+        }
     }
+    
+    /**
+     * Display the specified resource.
+     */
+    public function get($id)
+    {
+        try {
+            $data = $this->jobInterface->getDetails($id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Get job successfully',
+                'data' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(422);
+        }
+    }
+    
     
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        return $this->jobInterface->delete($id);
+        try {
+            $job = $this->jobInterface->destroy($id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Job deleted successfully',
+                'data' => $job,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ])->setStatusCode(422);
+        }
     }
 }

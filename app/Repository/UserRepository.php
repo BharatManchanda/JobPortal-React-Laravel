@@ -73,7 +73,7 @@ use PhpParser\Node\Stmt\TryCatch;
                 }
             }
             
-            public function delete($id=null){
+            public function destroy($id=null){
                 try {
                     $user = User::findOrFail($id);
                     $user->delete();
