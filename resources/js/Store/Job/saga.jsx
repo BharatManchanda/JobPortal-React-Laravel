@@ -26,18 +26,17 @@ import {
 
 function* getJobListRequest ({payload:payload}) {
     try{
-        console.log("ghghfcgfc");
         let response = yield call(api.job.list, {...payload, page: 1 + payload.page});
-        yield put(getJobListSuccess(response.data))
+        yield put(getJobListSuccess(response.list))
     } catch (error) {
-        yield put(getJobListFail(error.response.data.message));
-        toast.error(error.response.data.message);
+        yield put(getJobListFail(error?.response?.data?.message));
+        toast.error(error?.response?.data?.message);
     }
 }
 
 function* getJobRequest ({payload:payload}) {
     try{
-        let response = yield call(api.job.get, {payload});
+        let response = yield call(api.job.get, payload);
         yield put(getJobSuccess(response.data))
     } catch (error) {
         yield put(getJobFail(error.response.data.message));
@@ -47,12 +46,11 @@ function* getJobRequest ({payload:payload}) {
 
 function* createJobRequest ({payload:payload}) {
     try{
-        let response = yield call(api.job.create, {payload});
-        console.log(response, "create");
+        let response = yield call(api.job.create, payload);
         yield put(createJobSuccess(response.data))
     } catch (error) {
-        yield put(createJobFail(error.response.data.message));
-        toast.error(error.response.data.message);
+        yield put(createJobFail(error?.response?.data?.message));
+        toast.error(error?.response?.data?.message);
     }
 }
 

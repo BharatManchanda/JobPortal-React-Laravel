@@ -30,7 +30,7 @@ Route::middleware('auth:api')->group(function () {
 
     # User API
     Route::prefix('user')->controller(UserController::class)->group(function () {
-        Route::post('/','list');
+        Route::post('/','index');
         Route::get('/{id}','get');
         Route::post('/create','create');
         Route::put('/{id}/update','update');
@@ -40,7 +40,7 @@ Route::middleware('auth:api')->group(function () {
 
     # Job API
     Route::prefix('job')->controller(JobController::class)->group(function () {
-        Route::post('/','list');
+        Route::post('/','index');
         Route::get('/{id}','get');
         Route::post('/create','create');
         Route::put('/{id}/update','update');

@@ -14,3 +14,8 @@ export const RoleColor = {
     client: '#007cff',
     recruiter: '#64cb32',
 };
+
+export const activeAndInactive = {
+    active: '#1a8917',
+    inactive: '#b50a0a',
+};

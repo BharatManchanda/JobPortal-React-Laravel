@@ -9,7 +9,7 @@ const api = {
     },
 
     user: {
-        list: (data) => post(`/user?page=${1+data.page}`, data),
+        list: (data) => post(`/user?page=${data.page}`, data),
         get: (data) => get(`/user/${data.id}`),
         create: (data) => post(`/user/create`, data),
         update: (data) => put(`/user/${data.id}/update`, data),
@@ -19,7 +19,7 @@ const api = {
     },
 
     job: {
-        list:(data) => post(`job?page=${1+data.page}`, data),
+        list:(data) => post(`job?page=${data.page}`, data),
         get: (data) => get(`/job/${data.id}`),
         create: (data) => post(`/job/create/`, data),
         update: (data) => put(`/job/${data.id}/update`, data),

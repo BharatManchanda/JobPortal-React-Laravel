@@ -30,7 +30,6 @@ const initState = {
 
 export default function job(state=initState, action) {
     switch (action.type) {
-
         case GET_JOB_LIST_REQUEST:
         case GET_JOB_REQUEST:
         case CREATE_JOB_REQUEST:
@@ -40,7 +39,6 @@ export default function job(state=initState, action) {
                 ...state,
                 loading:true,
             };
-            
         case GET_JOB_LIST_FAIL:
         case GET_JOB_FAIL:
         case CREATE_JOB_FAIL:
@@ -50,16 +48,23 @@ export default function job(state=initState, action) {
                 ...state,
                 loading:false,
             };
-
         case GET_JOB_LIST_SUCCESS:
             return {
                 ...state,
+                list: action.payload.data,
                 loading:false,
+                pagination: {
+                    current_page:action.payload.current_page,
+                    last_page:action.payload.last_page,
+                    per_page:action.payload.per_page,
+                    total:action.payload.total,
+                }
             };
         case GET_JOB_SUCCESS:
             return {
                 ...state,
-                loading:false,
+                data: action.payload,
+                loading: false,
             };
         case CREATE_JOB_SUCCESS:
             return {
@@ -79,5 +84,5 @@ export default function job(state=initState, action) {
 
         default:
             return state;
-        }
+    }
 }

@@ -1,4 +1,4 @@
-const UserList = [
+const JobList = [
     {
         id:1,
         label: 'ID',
@@ -13,20 +13,20 @@ const UserList = [
     },
     {
         id:3,
-        label: 'Category',
-        sort:'category',
+        label: 'Industry Type',
+        sort:'industry_type',
         isSortable:true,
     },
     {
         id:2,
-        label: 'Verify At',
-        sort:'name',
+        label: 'Job Type',
+        sort:'job_type',
         isSortable:true,
     },
     {
         id:2,
-        label: 'Role',
-        sort:'role',
+        label: 'Status',
+        sort:'status',
         isSortable:true,
     },
     {
@@ -37,5 +37,5 @@ const UserList = [
     },
 ];
 
-const Constant = { UserList };
+const Constant = { JobList };
 export default Constant;

@@ -9,11 +9,11 @@ use App\Interface\JobInterface;
 
 class JobController extends Controller
 {
-    private $jobInterface;
+    private $jobRepository;
     
-    public function __construct(JobInterface $jobInterface)
+    public function __construct(JobInterface $jobRepository)
     {
-        $this->jobInterface = $jobInterface;
+        $this->jobRepository = $jobRepository;
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         try {
-            $list = $this->jobInterface->getList($request);
+            $list = $this->jobRepository->getList($request);
             return response()->json([
                 'status' => true,
                 'message' => 'Job list fetched successfully',
@@ -39,10 +39,9 @@ class JobController extends Controller
      * Create a newly created resource in storage.
      */
     public function create(Request $request)
-    {
+    {   
         try {
-            dd("done");
-            $data = $this->jobInterface->save($request);
+            $data = $this->jobRepository->save($request);
             return response()->json([
                 'status' => true,
                 'message' => 'Job '.($request->id ? 'updated' : 'created').' successfully',
@@ -62,7 +61,7 @@ class JobController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = $this->jobInterface->save($request, $id);
+            $data = $this->jobRepository->save($request, $id);
             return response()->json([
                 'status' => true,
                 'message' => 'Update job successfully',
@@ -79,10 +78,10 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function get($id)
+    public function get(int $id)
     {
         try {
-            $data = $this->jobInterface->getDetails($id);
+            $data = $this->jobRepository->getDetails($id);
             return response()->json([
                 'status' => true,
                 'message' => 'Get job successfully',
@@ -103,7 +102,7 @@ class JobController extends Controller
     public function destroy($id)
     {
         try {
-            $job = $this->jobInterface->destroy($id);
+            $job = $this->jobRepository->destroy($id);
             return response()->json([
                 'status' => true,
                 'message' => 'Job deleted successfully',

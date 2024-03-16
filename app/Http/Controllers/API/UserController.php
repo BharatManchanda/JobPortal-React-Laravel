@@ -25,7 +25,7 @@ class UserController extends Controller {
         return $this->userRepository->save($request, $id);
     }
 
-    public function list(Request $request) {
+    public function index(Request $request) {
         return $this->userRepository->getList($request);
     }
 

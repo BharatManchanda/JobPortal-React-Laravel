@@ -10,22 +10,17 @@ import { Box, Button, Chip, IconButton, TablePagination, Typography } from '@mui
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
-import { getUserListRequest } from '../../../Store/User/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../Components/Common/Loader';
 import { ToastContainer } from 'react-toastify';
-import ThemeButton from '../../../Components/Common/ThemeButton';
 import AddIcon from '@mui/icons-material/Add';
-import { RoleColor, ThemeColor } from '../../../Helpers/StyleConstant';
+import { ThemeColor, activeAndInactive } from '../../../Helpers/StyleConstant';
 import { Link } from 'react-router-dom';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import Delete from '../../../Components/Common/Delete';
-import { TreeItem, TreeView } from '@mui/x-tree-view';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { getJobListRequest } from '../../../Store/Job/actions';
 
 export default function List() {
     const [controller, setController] = React.useState({
@@ -34,7 +29,7 @@ export default function List() {
     });
 
     const dispatch = useDispatch();
-    let user = useSelector(state => state.user);
+    let job = useSelector(state => state.job);
     
     function sortTable(sort){
     }
@@ -59,32 +54,8 @@ export default function List() {
     }
 
     React.useEffect(() => {
-        dispatch(getUserListRequest(controller));
+        dispatch(getJobListRequest(controller));
     },[controller])
-
-
-
-    const MyTreeView = ({ nodes }) => {
-        const renderTree = (nodes) => (
-          nodes.map((node) => (
-            <TreeItem key={node.nodeId} nodeId={node.nodeId} label={node.label}>
-              {Array.isArray(node.children) && node.children.length > 0 ? (
-                renderTree(node.children)
-              ) : null}
-            </TreeItem>
-          ))
-        );
-      
-        return (
-          <TreeView
-            aria-label="file system navigator"
-            defaultCollapseIcon={<ExpandMoreIcon />}
-            defaultExpandIcon={<ChevronRightIcon />}
-          >
-            {renderTree(nodes)}
-          </TreeView>
-        );
-    }
 
     return (
         <>
@@ -94,13 +65,13 @@ export default function List() {
             </Box>
             <TableContainer component={Paper}>
                 <ToastContainer/>
-                <Loader loading={user.loading} />
-                {user.loading || (!!user.list.length ?
+                <Loader loading={job.loading} />
+                {job.loading || (!!job.list.length ?
                 <>
-                    <Table size="medium" aria-label="user-list">
+                    <Table size="medium" aria-label="job-list">
                         <TableHead>
                             <TableRow>
-                                {Constant.UserList.map((row, key) => (
+                                {Constant.JobList.map((row, key) => (
                                     <React.Fragment key={key}>
                                         <SortTh row={row}  sortTable={sortTable} />
                                     </React.Fragment>
@@ -108,22 +79,22 @@ export default function List() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {user.list.map((row) => (
+                            {job.list.map((row) => (
                                 <TableRow key={row.name} >
                                     <TableCell width={'10%'}>{row.id}</TableCell>
-                                    <TableCell width={'20%'}>{row.name}</TableCell>
-                                    <TableCell width={'25%'}>{row.email}</TableCell>
-                                    <TableCell width={'15%'}>{row.verify_at}</TableCell>
+                                    <TableCell width={'20%'}>{row.title}</TableCell>
+                                    <TableCell width={'25%'}>{row.industry_type}</TableCell>
+                                    <TableCell width={'15%'}>{row.job_type}</TableCell>
                                     <TableCell width={'10%'}>
-                                        <Chip size='small' label={row.role} style={{
+                                        <Chip size='small' label={row.status} style={{
                                             borderRadius: "7px",
                                             textTransform: "capitalize",
-                                            background: RoleColor[row.role],
+                                            background: activeAndInactive[row.status],
                                             color: '#fff',
                                         }} />
                                     </TableCell>
                                     <TableCell width={'20%'}>
-                                        <IconButton aria-label="edit" component={Link} to={`/admin/user/${row.id}/edit`} size="small" sx={{
+                                        <IconButton aria-label="edit" component={Link} to={`/admin/job/${row.id}/edit`} size="small" sx={{
                                             color:ThemeColor.primary
                                         }}>
                                             <ModeEditOutlineOutlinedIcon />
@@ -153,7 +124,7 @@ export default function List() {
                         component="div"
                         onPageChange={handlePageChange}
                         page={controller.page}
-                        count={user.pagination.total}
+                        count={job.pagination.total}
                         rowsPerPage={controller.rowsPerPage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />

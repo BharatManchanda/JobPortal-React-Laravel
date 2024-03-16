@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
     class JobRepository implements JobInterface{
 
         public function getList(Request $request) {
-            $list = Job::where('status', 'active')->paginate($request->rowsPerPage);
+            $list = Job::paginate($request->rowsPerPage);
             return $list;
         }
 
@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Auth;
                 'education','key_skills','job_location','benefits','responsibilities', 'preferred_skills',
                 'experience', 'ability_to_relocate', 'speak_employe_phone_no', 'shift_schedule', 'status',
             ]);
-
             $data['user_id'] = Auth::user()->id;
-
             if ($id) {
                 $job = Job::findOrFail($id);
                 $job->update($data);
