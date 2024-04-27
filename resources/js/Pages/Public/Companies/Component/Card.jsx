@@ -31,7 +31,7 @@ const ExpandMore = styled((props) => {
 export default function CompanyCard() {
     return (
         <Card sx={{ maxWidth: 500, p:2, borderRadius:5, m:1 }} variant='outlined'>
-            <Grid conatiner display={'flex'}>
+            <Grid container display={'flex'}>
                 <Grid item sm={3} display={'flex'} alignItems={'center'} justifyContent={'center'}>
                     <CardMedia
                         component="img"

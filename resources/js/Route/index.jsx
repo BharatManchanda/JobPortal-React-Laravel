@@ -13,6 +13,7 @@ import JobList from "../Pages/Admin/Job/List";
 import Job from "../Pages/Public/Job";
 import Companies from "../Pages/Public/Companies";
 import Services from "../Pages/Public/Services";
+import Recuriters from "../Pages/Public/Recuriters";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },

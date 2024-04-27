@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import { Box, CardActions, Grid } from '@mui/material';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
@@ -36,8 +36,8 @@ export default function JobCard() {
                             <LocationOnIcon sx={{fontSize: '16px', marginBottom:'-2px', }} /> Kolkata, Hyderabad/Secunderabad, Pune, Chennai, Bangalore/Bengaluru, Delhi / NCR, Mumbai (All Areas)
                         </Typography>
                         {
-                            ['Html', 'Javascript', 'Laravel', 'Php', 'CSS'].map((value, index) => (
-                                <Typography color="text.secondary" variant='caption' sx={{
+                            ['Html', 'Javascript', 'Laravel', 'Php', 'CSS'].map((value, key) => (
+                                <Typography key={key} color="text.secondary" variant='caption' sx={{
                                     mr: '15px',
                                     mt: '15px',
                                     display: 'inline-block'

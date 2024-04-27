@@ -13,15 +13,17 @@ const CompanyCard = () => {
                     <Grid item lg={3}>
                         <Filter />
                     </Grid>
-                    <Grid container lg={9}>
-                        {Array(30).fill("").map((value, index) => (
-                            <Grid item lg={6}>
-                                <Card/>
-                            </Grid>
-                        ))}
-                    <Box display={'flex'} justifyContent={'center'} width={'100%'}>
-                        <PaginationButton />
-                    </Box>
+                    <Grid item lg={9}>
+                        <Grid container>
+                            {Array(30).fill("").map((value, index) => (
+                                <Grid item lg={6}>
+                                    <Card/>
+                                </Grid>
+                            ))}
+                        </Grid>
+                        <Box display={'flex'} justifyContent={'center'} width={'100%'}>
+                            <PaginationButton />
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
