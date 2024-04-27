@@ -20,15 +20,15 @@ class AuthController extends Controller
                 }
             }
             return response()->json([
-                'status'=>true,
-                'token'=>$token,
-                'data'=>$user,
-                'message'=>"Login Successfully",
+                'status' => true,
+                'token' => $token,
+                'data' => $user,
+                'message' => "Login Successfully",
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             return response()->json([
-                'status'=>false,
-                'message'=>$th->getMessage(),
+                'status' => false,
+                'message' => $e->getMessage(),
             ])->setStatusCode(422);
         }
     }
@@ -37,8 +37,8 @@ class AuthController extends Controller
         $token = $request->user()->token();
         $token->revoke();
         return response()->json([
-            'status'=>true,
-            'message' => 'You have been successfully logged out!'
+            'status' => true,
+            'message'  =>  'You have been successfully logged out!'
         ]);
     }
     
@@ -50,8 +50,8 @@ class AuthController extends Controller
             $user->save();
         } catch (\Throwable $th) {
             return response()->json([
-                'status'=>false,
-                'message' => $th->getMessage(),
+                'status' => false,
+                'message'  =>  $th->getMessage(),
             ]);
         }
     }
@@ -62,12 +62,12 @@ class AuthController extends Controller
             $user->hash_link = Str::uuid(18);
             $user->save();
             return response()->json([
-                'status'=>true,
+                'status' => true,
                 'message' => 'Please follow the link in the email to change your password.'
             ]);
         } catch (\Throwable $th) {
             return response()->json([
-                'status'=>false,
+                'status' => false,
                 'message' => $th->getMessage(),
             ]);
         }

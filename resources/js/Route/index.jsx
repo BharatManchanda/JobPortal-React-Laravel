@@ -20,6 +20,7 @@ const PublicRoute = [
     { path:'/jobs', component: <Job /> },
     { path:'/companies', component: <Companies /> },
     { path:'/services', component: <Services /> },
+    { path:'/recuriters', component: <Recuriters /> },
 
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },

@@ -15,8 +15,8 @@ const CompanyCard = () => {
                     </Grid>
                     <Grid item lg={9}>
                         <Grid container>
-                            {Array(30).fill("").map((value, index) => (
-                                <Grid item lg={6}>
+                            {Array(30).fill("").map((value, key) => (
+                                <Grid key={key} item lg={6}>
                                     <Card/>
                                 </Grid>
                             ))}
