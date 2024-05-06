@@ -14,6 +14,7 @@ import Job from "../Pages/Public/Job";
 import Companies from "../Pages/Public/Companies";
 import Services from "../Pages/Public/Services";
 import Recuriters from "../Pages/Public/Recuriters";
+import HelpDesk from "../Pages/Public/HelpDesk/HelpDesk";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
@@ -25,6 +26,7 @@ const PublicRoute = [
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },
     { path:'/register', component: <Register /> },
+    { path:'/help-desk', component: <HelpDesk /> },
 ];
 
 const AdminRoute = [

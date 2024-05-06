@@ -1,6 +1,6 @@
 import React from 'react';
 // import { styled, alpha } from '@mui/material/styles';
-import {AppBar, Box, Toolbar, Typography, IconButton, Badge, Tooltip, Avatar, Menu, MenuItem} from '@mui/material';
+import {AppBar, Box, Toolbar, Typography, IconButton, Badge, Tooltip, Avatar, Menu, MenuItem, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Button, Drawer, Divider, styled, TextField} from '@mui/material';
 import ThemeButton from '../../Common/ThemeButton';
 import { ThemeColor } from '../../../Helpers/StyleConstant';
 import { Links } from './Constant/Constant';
@@ -8,7 +8,17 @@ import { NavLink } from 'react-router-dom';
 import "./style.scss"
 import { Link } from 'react-router-dom';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import SendIcon from '@mui/icons-material/Send';
 
+const Message = styled(Typography)(({ theme }) => ({
+    maxWidth: 220,
+    background: "#84baf9",
+    color: '#fff',
+    padding: '5px 10px',
+    margin:'2px',
+    display: 'inline-block',
+    borderRadius: '10px',
+}));
 
 function notificationsLabel(count) {
     if (count === 0) {
@@ -23,25 +33,25 @@ function notificationsLabel(count) {
 function DrawerAppBar(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [state, setState] = React.useState({
+        right: false,
+    });
     const user = JSON.parse(localStorage.getItem('user'));
     const settings = [
         {
             href:`/${user?.role}/dashboard`,
             label: 'Dashboard',
         },
-        // {
-        //     href:'/profile',
-        //     label: 'Profile',
-        // },
+        {
+            href:'/help-desk',
+            label: 'Help Desk',
+        },
         {
             href:'/logout',
             label: 'Logout'
         }
     ];
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -63,13 +73,12 @@ function DrawerAppBar(props) {
                         {Links.map((value, index) => {
                             const {to, label} = value;
                             return (
-                            <NavLink to={to} key={index}
-                            style={{
-                                textDecoration: 'none',
-                                color: 'inherit',
-                                marginLeft:'15px',
-                                fontSize:'18px'
-                            }}    
+                            <NavLink to={to} key={index} style={{
+                                    textDecoration: 'none',
+                                    color: 'inherit',
+                                    marginLeft:'15px',
+                                    fontSize:'18px'
+                                }}
                             >
                                 {label}
                             </NavLink>
@@ -107,11 +116,13 @@ function DrawerAppBar(props) {
                                 >
                                 {settings.map((setting, index) => (
                                     <MenuItem key={index} onClick={handleCloseUserMenu}>
-                                        <NavLink to={setting.href}>
-                                            <Typography textAlign="center">{setting.label}</Typography>
+                                        <NavLink to={setting.href} style={{color: "#000", textDecoration: "none"}}>
+                                            <Typography textAlign="center">
+                                                {setting.label}
+                                            </Typography>
                                         </NavLink>
                                     </MenuItem>
-                                ))}
+                                ))}                                
                             </Menu>
                         </Box>
                         :

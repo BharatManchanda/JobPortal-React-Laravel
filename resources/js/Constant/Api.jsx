@@ -19,12 +19,18 @@ const api = {
     },
 
     job: {
-        list:(data) => post(`job?page=${data.page}`, data),
+        list:(data) => post(`/job?page=${data.page}`, data),
         get: (data) => get(`/job/${data.id}`),
         create: (data) => post(`/job/create/`, data),
         update: (data) => put(`/job/${data.id}/update`, data),
         delete: (data) => del(`/job/${data.id}/delete`),
     },
+
+    chat: {
+        list:() => post('/chat'),
+        send:() => post('/chat/send'),
+        delete:() => post('/chat/delete'),
+    }
 };
 
 export default api;

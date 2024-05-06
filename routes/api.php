@@ -1,11 +1,15 @@
 <?php
 
-use App\Http\Controllers\API\JobController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 # Auth Controller
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\{
+    UserController,
+    JobController,
+    ChatController,
+};
+
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +48,13 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}','get');
         Route::post('/create','create');
         Route::put('/{id}/update','update');
+    });
+    
+    # Chat API
+    Route::prefix('chat')->controller(ChatController::class)->group(function () {
+        Route::post('/','index');
+        Route::post('/send','sendMessage');
+        Route::delete('/{id}/delete','deleteMessage');
     });
 
     Route::post('logout',[AuthController::class, 'logout']);

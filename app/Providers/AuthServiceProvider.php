@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Gate;
 # Model Class
 use App\Models\Job;
 use App\Models\User;
-
+use App\Policies\ChatPolicy;
 # Policies Class
 use App\Policies\JobPolicy;
 use App\Policies\UserPolicy;
@@ -24,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         //
         User::class => UserPolicy::class,
+        Job::class => JobPolicy::class,
         Job::class => JobPolicy::class,
     ];
 
@@ -45,5 +46,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-job', [JobPolicy::class, 'delete']);
         Gate::define('list-job', [JobPolicy::class, 'list']);
         Gate::define('detail-job', [JobPolicy::class, 'detail']);
+
+        // Chat Gate Policy
+        Gate::define('get-message', [ChatPolicy::class, 'index']);
     }
 }

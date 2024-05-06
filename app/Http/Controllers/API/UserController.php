@@ -33,12 +33,6 @@ class UserController extends Controller {
         return $this->userRepository->getDetails($id);
     }
     
-    public function chatMessage(Request $request) {
-        $senderId = Auth::user()->id;
-        event(new ChatEvent($senderId, $request->receiver_id, $request->message));
-        return false;
-    }
-    
     public function destroy($id) {
         return $this->userRepository->destroy($id);
     }
