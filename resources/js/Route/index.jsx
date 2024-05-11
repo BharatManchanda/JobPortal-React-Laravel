@@ -14,7 +14,6 @@ import Job from "../Pages/Public/Job";
 import Companies from "../Pages/Public/Companies";
 import Services from "../Pages/Public/Services";
 import Recuriters from "../Pages/Public/Recuriters";
-import HelpDesk from "../Pages/Public/HelpDesk/HelpDesk";
 
 const PublicRoute = [
     { path:'/', component: <Home /> },
@@ -26,20 +25,23 @@ const PublicRoute = [
     { path:'/login', component: <Login /> },
     { path:'/logout', component: <Logout /> },
     { path:'/register', component: <Register /> },
-    { path:'/help-desk', component: <HelpDesk /> },
 ];
 
 const AdminRoute = [
     { path:'/admin/dashboard', component: <Dashboard /> },
-
+    
     { path:'/admin/user', component: <List /> },
     { path:'/admin/user/create', component: <CreateOrEdit /> },
     { path:'/admin/user/:id/edit', component: <CreateOrEdit /> },
     { path:'/admin/user/:id/chat', component: <Chat /> },
-
+    
     { path:'/admin/job', component: <JobList /> },
     { path:'/admin/job/create', component: <JobCreateOrEdit /> },
     { path:'/admin/job/:id/edit', component: <JobCreateOrEdit /> },
 ];
 
-export {PublicRoute, AdminRoute};
+const RecuriterRoute = [
+    // { path:'/recruiter/dashboard', component: <Dashboard /> },
+];
+
+export {PublicRoute, AdminRoute, RecuriterRoute};

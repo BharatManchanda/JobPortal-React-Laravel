@@ -108,12 +108,25 @@ const CreateOrEdit = () => {
                 </Grid>
                 <Grid mt={2} display={'flex'} flexDirection={'column'}>
                     <FormControl>
-                        <Typography fontWeight='bolder' fontSize='14px' component='small' sx={{marginBottom:'10px'}}>User Role</Typography>
-                        <RadioGroup row value={data.role} defaultValue={data.role} name="role" onChange={handleChange}>
-                            {UserRole.map((value, index) => (
-                                <FormControlLabel key={index} value={value.value} control={<Radio />} label={value.label} />
+                        <Typography
+                            fontWeight='bolder'
+                            fontSize='14px'
+                            component='small'
+                            sx={{marginBottom:'10px'}}
+                        >
+                            User Role
+                        </Typography>
+                        {console.log(data.role,"data.role")}
+                        {data.role && <RadioGroup row value={data.role}  name="role" onChange={handleChange}>
+                            {UserRole.map((item, key) => (
+                                <FormControlLabel
+                                    key={key}
+                                    value={item.value}
+                                    control={<Radio />}
+                                    label={item.label}
+                                />
                             ))}
-                        </RadioGroup>
+                        </RadioGroup>}
                     </FormControl>
                 </Grid>
                 {

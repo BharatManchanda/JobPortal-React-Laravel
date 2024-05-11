@@ -42,10 +42,7 @@ function DrawerAppBar(props) {
             href:`/${user?.role}/dashboard`,
             label: 'Dashboard',
         },
-        {
-            href:'/help-desk',
-            label: 'Help Desk',
-        },
+
         {
             href:'/logout',
             label: 'Logout'

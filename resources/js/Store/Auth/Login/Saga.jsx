@@ -29,11 +29,14 @@ function* loginRequest({payload:payload, navigate:navigate}) {
 
 function* logoutRequest({navigate:navigate}) {
     try {
+        // console.log("testing");
         let response = yield call(api.auth.logout);
         localStorage.clear();
+        console.log(response,"response")
         navigate('/login');
         yield put(logoutUserSuccess());
     } catch (error) {
+        console.log(error)
         yield put(logoutUserFail());
     }
 }

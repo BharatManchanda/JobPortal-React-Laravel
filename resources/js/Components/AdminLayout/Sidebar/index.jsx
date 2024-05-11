@@ -176,7 +176,10 @@ export default function Sidebar() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem>
-                                    <Link to='/logout'>Logout</Link>
+                                    <Link to='/logout' style={{
+                                        textDecoration: 'none',
+                                        color: '#212121',
+                                    }}>Logout</Link>
                                 </MenuItem>
                             </Menu>
                         </Grid>

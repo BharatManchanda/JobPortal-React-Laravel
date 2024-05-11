@@ -42,7 +42,9 @@ const CreateOrEdit = () => {
     }, [job.loading]);
     
     React.useEffect(() => {
-        dispatch(getJobRequest({id:id}));
+        if (id) {
+            dispatch(getJobRequest({id:id}));
+        }
     }, []);
 
     return (
@@ -137,7 +139,7 @@ const CreateOrEdit = () => {
                         />
                     </Grid>
 
-                    <Grid item lg={6} display={'flex'} flexDirection={'column'}>
+                    <Grid item lg={12} display={'flex'} flexDirection={'column'}>
                         <Box>
                             {data?.key_skills?.map((value, index) => (
                                 <Chip key={index} label={value} color='primary' onDelete={() => handleDelete(value)} sx={{mr:1, mb:1}} />
@@ -180,6 +182,23 @@ const CreateOrEdit = () => {
                     </Grid>
 
                     <Grid item lg={6} display={'flex'} flexDirection={'column'}>
+                        <FormControl required size='small'>
+                            <InputLabel>Experience</InputLabel>
+                            <Select
+                                name={'experience'}
+                                value={data.experience}
+                                label="Experience"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={0}>Fresher</MenuItem>
+                                {Array(10).fill().map((_, index) => (
+                                    <MenuItem key={index} value={index+1}>{index+1} Year</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item lg={6} display={'flex'} flexDirection={'column'}>
                         <TextField
                             error={false ? true : false}
                             type='text'
@@ -207,23 +226,6 @@ const CreateOrEdit = () => {
                             onChange={handleChange} fullWidth required
                             helperText=""
                         />
-                    </Grid>
-
-                    <Grid item lg={6} display={'flex'} flexDirection={'column'}>
-                        <FormControl required size='small'>
-                            <InputLabel>Experience</InputLabel>
-                            <Select
-                                name={'experience'}
-                                value={data.experience}
-                                label="Experience"
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={0}>Fresher</MenuItem>
-                                {Array(10).fill().map((_, index) => (
-                                    <MenuItem key={index} value={index+1}>{index+1} Year</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
                     </Grid>
 
                     <Grid item lg={6} display={'flex'} flexDirection={'column'}>

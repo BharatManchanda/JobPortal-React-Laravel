@@ -11,7 +11,8 @@ import {
 
 function* getMessageList() {
     try {
-        
+        let response = yield call(api.chat.list);
+        console.log(response,"response");
     } catch (error) {
         
     }

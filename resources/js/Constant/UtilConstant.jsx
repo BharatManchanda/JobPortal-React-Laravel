@@ -1,14 +1,14 @@
 export const UserRole = [
     {
-        label:'Admin',
-        value:'admin',
+        label: 'Admin',
+        value: 'admin',
     },
     {
-        label:'Recruiter',
-        value:'recruiter',
+        label: 'Recruiter',
+        value: 'recruiter',
     },
     {
-        label:'Client',
-        value:'client',
+        label: 'Client',
+        value: 'client',
     },
 ];

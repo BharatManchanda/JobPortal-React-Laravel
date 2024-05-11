@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import {PublicRoute, AdminRoute} from './Route';
+import {PublicRoute, AdminRoute, RecuriterRoute} from './Route';
 import GernalLayout from './Components/GernalLayout';
 import AuthenticatedLayout from './Components/AdminLayout';
 import { AdminMiddleware } from './Route/Middlewares';
@@ -21,6 +21,19 @@ export default function Apps() {
                 ))}
 
                 {AdminRoute.map((value, index) => (
+                    <Route key={index}
+                        path={value.path}
+                        element={
+                            <AdminMiddleware>
+                                <AuthenticatedLayout>
+                                    {value.component}
+                                </AuthenticatedLayout>
+                            </AdminMiddleware>
+                        }
+                    />
+                ))}
+
+                {RecuriterRoute.map((value, index) => (
                     <Route key={index}
                         path={value.path}
                         element={

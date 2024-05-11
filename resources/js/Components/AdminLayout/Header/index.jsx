@@ -84,7 +84,7 @@ export default function Header(){
                             >
                                 <AccountCircle />
                             </IconButton>
-                            <Menu
+                            {/* <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
@@ -101,9 +101,12 @@ export default function Header(){
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem>
-                                    <Link to={'/logout'}>Logout</Link>
+                                    <Link to={'/logout'} style={{
+                                        textDecoration: 'none !important',
+                                        color:'yellow'
+                                    }}>Logout</Link>
                                 </MenuItem>
-                            </Menu>
+                            </Menu> */}
                         </Grid>
                     </Grid>
 

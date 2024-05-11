@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function GernalLayout({children}){
     const [state, setState] = React.useState({
         right: false,
-        350: true
+        // 350: true
     });
     const dispatch = useDispatch();
     let scrollRef = useRef(null);
@@ -62,8 +62,8 @@ export default function GernalLayout({children}){
                     flexDirection: 'row',
                     p:'0 !important',
                 }}>
-                    <IconButton aria-label="" sx={{color: '#fff'}}>
-                        <KeyboardBackspaceOutlinedIcon onClick={toggleDrawer(350, false)}/>
+                    <IconButton aria-label="" sx={{color: '#fff'}} onClick={toggleDrawer(350, false)}>
+                        <KeyboardBackspaceOutlinedIcon />
                     </IconButton>
                     <Typography variant="body1" component="p">
                         Help Desk
@@ -89,7 +89,7 @@ export default function GernalLayout({children}){
                     </Box>
                 </React.Fragment>))}
                 <Box ref={scrollRef}>
-                    Te
+                    
                 </Box>
             </Box>
 

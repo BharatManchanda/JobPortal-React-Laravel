@@ -5,9 +5,9 @@ import {
     GET_MESSAGE_LIST_REQUEST,
     GET_MESSAGE_LIST_SUCCESS,
     GET_MESSAGE_LIST_FAIL,
-    DELETE_MESSAGE_LIST_REQUEST,
-    DELETE_MESSAGE_LIST_SUCCESS,
-    DELETE_MESSAGE_LIST_FAIL,
+    DELETE_MESSAGE_REQUEST,
+    DELETE_MESSAGE_SUCCESS,
+    DELETE_MESSAGE_FAIL,
 } from './actionType';
 
 const initState = {
@@ -16,10 +16,10 @@ const initState = {
 }
 
 export default function chat(state = initState, action) {
-    switch (key) {
+    switch (action.type) {
         case SEND_MESSAGE_REQUEST:
         case GET_MESSAGE_LIST_REQUEST:
-        case DELETE_MESSAGE_LIST_REQUEST:
+        case DELETE_MESSAGE_REQUEST:
             return {
                 ...state,
                 loading:true,
@@ -35,14 +35,14 @@ export default function chat(state = initState, action) {
                 ...state,
                 loading:false,
             }
-        case DELETE_MESSAGE_LIST_SUCCESS:
+        case DELETE_MESSAGE_SUCCESS:
             return {
                 ...state,
                 loading:false,
             }
         case SEND_MESSAGE_FAIL:
         case GET_MESSAGE_LIST_FAIL:
-        case DELETE_MESSAGE_LIST_FAIL:
+        case DELETE_MESSAGE_FAIL:
             return {
                 ...state,
                 loading:false,

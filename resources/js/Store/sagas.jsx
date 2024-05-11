@@ -3,6 +3,7 @@ import auth from './Auth/Login/Saga';
 import register from './Auth/Register/Saga';
 import user from './User/saga';
 import job from './Job/saga';
+import chat from './Chat/saga';
 
 export default function* sagas() {
     yield all([
@@ -10,5 +11,6 @@ export default function* sagas() {
         fork(register),
         fork(user),
         fork(job),
+        fork(chat),
     ]);
 }
