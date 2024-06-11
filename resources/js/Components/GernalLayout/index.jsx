@@ -12,6 +12,8 @@ export default function GernalLayout({children}){
         right: false,
         // 350: true
     });
+
+    const [message, setMessage] = React.useState(Array(15).fill());
     const dispatch = useDispatch();
     let scrollRef = useRef(null);
 
@@ -42,11 +44,19 @@ export default function GernalLayout({children}){
         }
     }
 
+    // React.useEffect(() => {
+    //     if (state[350]) {
+    //         scrollBottom();
+    //     }
+    // },[state, scrollRef])
+
     React.useEffect(() => {
-        if (state[350]) {
-            scrollBottom();
+        const container = scrollRef.current;
+        console.log(container,"container");
+        if (container) {
+          container.scrollTop = container.scrollHeight;
         }
-    },[state, scrollRef])
+      }, [message]);
 
     const list = () => (
         <Box sx={{ width: 350 }} role="presentation">
@@ -78,8 +88,9 @@ export default function GernalLayout({children}){
                 height: '80% !important',
                 overflowY: 'auto',
             }}
+            ref={scrollRef}
             >
-                {Array(15).fill().map((item, key) => ( <React.Fragment key={key}>
+                {message.map((item, key) => ( <React.Fragment key={key}>
                     <Box textAlign={'right'}>
                         <Message variant='subtitle1' component={'span'}>Hi Admin</Message>
                     </Box>
@@ -88,9 +99,9 @@ export default function GernalLayout({children}){
                         <Message variant='subtitle1' component={'span'}>Hi Client</Message>
                     </Box>
                 </React.Fragment>))}
-                <Box ref={scrollRef}>
+                {/* <Box ref={scrollRef}>
                     
-                </Box>
+                </Box> */}
             </Box>
 
 

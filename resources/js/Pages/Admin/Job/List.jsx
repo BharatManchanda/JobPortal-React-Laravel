@@ -1,12 +1,5 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box, Button, Chip, IconButton, TablePagination, Typography } from '@mui/material';
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Chip, IconButton, TablePagination, Typography } from '@mui/material';
 import Constant from './Constant/TableColName';
 import SortTh from '../../../Components/Common/SortTh';
 import NotFound from '../../../Components/Common/NotFound';
@@ -50,7 +43,7 @@ export default function List() {
     }
 
     function handleDelete(){
-        
+        console.log("ok");
     }
 
     React.useEffect(() => {
@@ -63,11 +56,9 @@ export default function List() {
                 <Typography variant={'h6'} sx={{mt: '10px', fontWeight: 'bolder'}}>Job List</Typography>
                 <Button component={Link} to="/admin/job/create" sx={{mb:'2px'}} startIcon={<AddIcon/>} color='secondary' variant="contained" >Create</Button>
             </Box>
-            <TableContainer component={Paper}>
                 <ToastContainer/>
                 <Loader loading={job.loading} />
-                {job.loading || (!!job.list.length ?
-                <>
+                {job.loading || (!!job.list.length ? <TableContainer component={Paper}>
                     <Table size="medium" aria-label="job-list">
                         <TableHead>
                             <TableRow>
@@ -79,8 +70,8 @@ export default function List() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {job.list.map((row) => (
-                                <TableRow key={row.name} >
+                            {job.list.map((row, key) => (
+                                <TableRow key={key} >
                                     <TableCell width={'10%'}>{row.id}</TableCell>
                                     <TableCell width={'20%'}>{row.title}</TableCell>
                                     <TableCell width={'25%'}>{row.industry_type}</TableCell>
@@ -128,9 +119,9 @@ export default function List() {
                         rowsPerPage={controller.rowsPerPage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
-                </> : <NotFound />
+                </TableContainer>
+                : <NotFound />
                 )}
-            </TableContainer>
         </>
     );
 }

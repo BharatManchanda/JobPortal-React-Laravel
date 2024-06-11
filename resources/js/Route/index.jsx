@@ -15,6 +15,9 @@ import Companies from "../Pages/Public/Companies";
 import Services from "../Pages/Public/Services";
 import Recuriters from "../Pages/Public/Recuriters";
 
+import CategoryCreateOrEdit from "../Pages/Admin/Category/CreateOrEdit";
+import CategoryList from "../Pages/Admin/Category/List";
+
 const PublicRoute = [
     { path:'/', component: <Home /> },
     { path:'/jobs', component: <Job /> },
@@ -38,6 +41,10 @@ const AdminRoute = [
     { path:'/admin/job', component: <JobList /> },
     { path:'/admin/job/create', component: <JobCreateOrEdit /> },
     { path:'/admin/job/:id/edit', component: <JobCreateOrEdit /> },
+    
+    { path:'/admin/category/', component: <CategoryList /> },
+    { path:'/admin/category/create', component: <CategoryCreateOrEdit /> },
+    { path:'/admin/category/:id/edit', component: <CategoryCreateOrEdit /> },
 ];
 
 const RecuriterRoute = [

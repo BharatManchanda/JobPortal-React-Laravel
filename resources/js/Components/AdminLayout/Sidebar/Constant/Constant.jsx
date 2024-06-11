@@ -3,6 +3,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { ThemeColor } from '../../../../Helpers/StyleConstant';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const Menus = {
     admin:[
@@ -22,6 +23,12 @@ const Menus = {
             label: 'Job',
             icon: <WorkIcon sx={{ color: ThemeColor.secondary }} />,
             to:'/admin/job',
+            isSubmenu: false,
+        },
+        {
+            label: 'Category',
+            icon: <CategoryIcon sx={{ color: ThemeColor.secondary }} />,
+            to:'/admin/category',
             isSubmenu: false,
         },
     ],

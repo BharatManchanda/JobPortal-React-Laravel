@@ -8,6 +8,7 @@ use App\Http\Controllers\API\{
     UserController,
     JobController,
     ChatController,
+    CategoryController,
 };
 
 use App\Http\Controllers\AuthController;
@@ -55,6 +56,15 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/','index');
         Route::post('/send','sendMessage');
         Route::delete('/{id}/delete','deleteMessage');
+    });
+
+    # Category API
+    Route::prefix('category')->controller(CategoryController::class)->group(function () {
+        Route::post('/','index');
+        Route::get('/{id}','get');
+        Route::post('/create','create');
+        Route::put('/{id}/update','update');
+        Route::patch('/{id}/update-status','updateStatus');
     });
 
     Route::post('logout',[AuthController::class, 'logout']);

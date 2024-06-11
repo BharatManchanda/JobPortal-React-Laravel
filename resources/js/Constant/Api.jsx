@@ -1,4 +1,4 @@
-import { get, post, del, put } from "./ApiHelper";
+import { get, post, del, put, patch } from "./ApiHelper";
 
 const api = {
     auth:{
@@ -30,6 +30,15 @@ const api = {
         list:() => post('/chat'),
         send:() => post('/chat/send'),
         delete:() => post('/chat/delete'),
+    },
+    
+    category: {
+        list:() => post('/category'),
+        get: (data) => get(`/category/${data.id}`),
+        create: (data) => post(`/category/create/`, data),
+        update: (data) => put(`/category/${data.id}/update`, data),
+        delete: (data) => del(`/category/${data.id}/delete`),
+        updateStatus: (payload) => patch(`/category/${payload.id}/update-status`),
     }
 };
 

@@ -16,7 +16,7 @@ export default function Apps() {
                             <GernalLayout>
                                 {value.component}
                             </GernalLayout>
-                            }
+                        }
                     />
                 ))}
 

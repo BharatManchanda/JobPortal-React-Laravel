@@ -6,10 +6,14 @@ use Illuminate\Support\ServiceProvider;
 # Interface
 use App\Interface\JobInterface;
 use App\Interface\UserInterface;
+use App\Interface\ChatInterface;
+use App\Interface\CategoryInterface;
 
 # Repository
 use App\Repository\UserRepository;
 use App\Repository\JobRepository;
+use App\Repository\ChatRepository;
+use App\Repository\CategoryRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,9 @@ class RepositoryServiceProvider extends ServiceProvider
         //
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(JobInterface::class, JobRepository::class);
+        $this->app->bind(ChatInterface::class, ChatRepository::class);
+        $this->app->bind(ChatInterface::class, ChatRepository::class);
+        $this->app->bind(CategoryInterface::class, CategoryRepository::class);
     }
 
     /**

@@ -42,7 +42,7 @@ const CreateOrEdit = () => {
     }, [job.loading]);
     
     React.useEffect(() => {
-        if (id) {
+        if (false) {
             dispatch(getJobRequest({id:id}));
         }
     }, []);

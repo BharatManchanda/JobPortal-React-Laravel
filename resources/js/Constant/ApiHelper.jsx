@@ -43,3 +43,9 @@ export const put = async (url, data, config={}) => {
     .put(url, {...data}, {...config})
     .then((response) => response.data)
 }
+
+export const patch = async (url, data, config={}) => {
+    return await api
+    .patch(url, {...data}, {...config})
+    .then((response) => response.data)
+}
